@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade: Biomas e Ecossistemas Brasileiros</title>
+  <style>
+     *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+     }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+       max-width: 1000px;
+       margin: 0 auto;
+       background: white;
+       border-radius: 10px;
+       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+       overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .form-section {
+       background: #f8f9fa;
+    padding: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.form-group {
+   margin-bottom: 15px;
+}
+
+.form-group label {
+   display: block;
+   font-weight: 600;
+   margin-bottom: 8px;
+   color: #333;
+}
+
+.form-group select {
+   width: 100%;
+   padding: 10px;
+   border: 2px solid #667eea;
+   border-radius: 5px;
+   font-size: 14px;
+   background: white;
+   cursor: pointer;
+}
+
+.form-group select:focus {
+   outline: none;
+   border-color: #764ba2;
+   box-shadow: 0 0 5px rgba(118, 75, 162, 0.3);
+}
+
+.student-info {
+   background: #e3f2fd;
+   padding: 10px;
+   border-radius: 5px;
+   margin-top: 10px;
+   display: none;
+}
+
+.student-info p {
+   margin: 5px 0;
+   font-size: 14px;
+}
+
+.student-info strong {
+   color: #1976d2;
+}
+.questions-section {
+  padding: 30px 20px;
+}
+
+.question-block {
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.question-block:last-child {
+  border-bottom: none;
+}
+
+.question-number {
+  display: inline-block;
+  background: #667eea;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.question-text {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.question-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Questões de Múltipla Escolha */
+.multiple-choice {
+   display: flex;
+   flex-direction: column;
+    gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.option:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), inset 0 -3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.option.selected {
+  background: #1b5e20;
+  color: white;
+  border-color: #1b5e20;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+}
+
+.option input[type="radio"] {
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.option label {
+  flex-grow: 1;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Questões Dissertativas */
+.essay-question {
+   margin-top: 15px;
+}
+.essay-question textarea {
+   width: 100%;
+   min-height: 120px;
+   padding: 12px;
+   border: 2px solid #ddd;
+   border-radius: 8px;
+   font-family: 'Segoe UI', sans-serif;
+   font-size: 14px;
+   resize: vertical;
+   transition: border-color 0.3s ease;
+}
+
+.essay-question textarea:focus {
+   outline: none;
+   border-color: #667eea;
+   box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+}
+
+.essay-image {
+   max-width: 400px;
+   height: auto;
+   border-radius: 8px;
+   margin-bottom: 15px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  padding: 30px 20px;
+  background: #f8f9fa;
+  justify-content: center;
+}
+
+button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit {
+   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+   color: white;
+   min-width: 200px;
+}
+
+.btn-submit:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 15px rgba(30, 60, 114, 0.3);
+}
+
+.btn-submit:active {
+   transform: translateY(0);
+}
+
+.btn-reset {
+   background: #f44336;
+   color: white;
+   min-width: 150px;
+}
+
+.btn-reset:hover {
+   background: #d32f2f;
+   transform: translateY(-2px);
+}
+
+.message {
+  display: none;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.message.success {
+  background: #4caf50;
+  color: white;
+  display: block;
+}
+
+.message.error {
+  background: #f44336;
+  color: white;
+  display: block;
+}
+
+.loading {
+   display: none;
+   text-align: center;
+   padding: 20px;
+        color: #667eea;
+        font-size: 16px;
+    }
+
+    .loading.show {
+       display: block;
+    }
+
+    @media (max-width: 768px) {
+     .header h1 {
+       font-size: 20px;
+     }
+
+        .button-group {
+          flex-direction: column;
+        }
+
+        button {
+          width: 100%;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+       <h1>E.E. PROFª WANDA MASCAGNI DE SÁ</h1>
+       <p>Atividade: Biomas e Ecossistemas Brasileiros - 7º Ano</p>
+       <p>3º Bimestre - Ciências da Natureza</p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+         <label for="turma">TURMA:</label>
+         <select id="turma" onchange="carregarAlunos()">
+            <option value="">Selecione a turma...</option>
+            <option value="7º Ano A">7º Ano A</option>
+            <option value="7º Ano B">7º Ano B</option>
+         </select>
+      </div>
+
+        <div class="form-group">
+          <label for="aluno">NOME:</label>
+          <select id="aluno" onchange="mostrarInfoAluno()" disabled>
+             <option value="">Selecione seu nome...</option>
+          </select>
+        </div>
+      <div class="student-info" id="studentInfo">
+         <p>Turma: <strong id="infoTurma"></strong></p>
+         <p>Nome: <strong id="infoNome"></strong></p>
+         <p>RA: <strong id="infoRA"></strong></p>
+      </div>
+    </div>
+
+    <div class="questions-section" id="questionsSection">
+      <!-- QUESTÕES SERÃO INSERIDAS AQUI -->
+    </div>
+
+   <div class="button-group">
+     <button class="btn-submit" onclick="enviarRespostas()">ENVIAR
+RESPOSTAS</button>
+     <button class="btn-reset" onclick="limparFormulario()">LIMPAR TUDO</button>
+   </div>
+
+    <div class="loading" id="loading">Enviando respostas...</div>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    // Dados dos alunos
+    const alunosData = {
+       "7º Ano A": [
+          {"Nº de chamada": 1, "Nome do Aluno": "ÁGATHA CAMPOS DE SOUSA", "RA":
+123687705},
+          {"Nº de chamada": 2, "Nome do Aluno": "ALBERT BARROS CARDOSO", "RA":
+114506468},
+          {"Nº de chamada": 3, "Nome do Aluno": "ALEXIA LOHANA COSTA DE OLIVEIRA", "RA": 115864647},
+          {"Nº de chamada": 4, "Nome do Aluno": "ANA CAROLINA GONÇALVES NASCIMENTO DE LIMA", "RA": 115865010},
+          {"Nº de chamada": 5, "Nome do Aluno": "ARIANE DIAS SOARES", "RA":
+115066892},
+          {"Nº de chamada": 6, "Nome do Aluno": "BARBARA MAIA SILVA", "RA":
+116500942},
+          {"Nº de chamada": 7, "Nome do Aluno": "CAROLINE CARLOS DE PAULA", "RA":
+121631871},
+          {"Nº de chamada": 8, "Nome do Aluno": "CLARA ANGELINA GONÇALVES GOMES", "RA": 115069279},
+          {"Nº de chamada": 9, "Nome do Aluno": "CLARISSA RODRIGUES DE OLIVEIRA",
+"RA": 121486283},
+          {"Nº de chamada": 10, "Nome do Aluno": "CONRADO BRÁS DE SOUZA", "RA":
+115864719},
+          {"Nº de chamada": 11, "Nome do Aluno": "DARLA MARIANA OLIVEIRA SILVA",
+"RA": 116210121},
+          {"Nº de chamada": 12, "Nome do Aluno": "DILENE MENDES DIAS", "RA":
+120661270},
+          {"Nº de chamada": 13, "Nome do Aluno": "DINA MARTINS FERREIRA", "RA":
+115845906},
+          {"Nº de chamada": 14, "Nome do Aluno": "DIOGO DE OLIVEIRA SILVA", "RA":
+116242848},
+          {"Nº de chamada": 15, "Nome do Aluno": "DOMINGOS NUNES SILVA NETO",
+"RA": 115066704},
+          {"Nº de chamada": 16, "Nome do Aluno": "DOUGLAS RAFAEL CORDEIRO VIEIRA", "RA": 121686485},
+          {"Nº de chamada": 17, "Nome do Aluno": "EDSON HENRIQUE RAMOS RIBEIRO", "RA": 121643887},
+          {"Nº de chamada": 18, "Nome do Aluno": "ELAINNE CRISTINA DA SILVA LIMA",
+"RA": 115878455},
+          {"Nº de chamada": 19, "Nome do Aluno": "ELIANA GONÇALVES PEREIRA", "RA":
+115845857},
+          {"Nº de chamada": 20, "Nome do Aluno": "ELIEL RODRIGUES OLIVEIRA", "RA":
+120713154},
+          {"Nº de chamada": 21, "Nome do Aluno": "ELISIA PEREIRA DOS SANTOS", "RA":
+115845749},
+          {"Nº de chamada": 22, "Nome do Aluno": "ELLEN SOPHIA CRUZ FERREIRA",
+"RA": 119895640},
+          {"Nº de chamada": 23, "Nome do Aluno": "EVELLYN MIRLA COSTA SILVA", "RA":
+122187432},
+          {"Nº de chamada": 24, "Nome do Aluno": "EVERSON RIBEIRO DA SILVA", "RA":
+115845784},
+          {"Nº de chamada": 25, "Nome do Aluno": "FABIANA OLIVEIRA GOMES", "RA":
+115865233},
+          {"Nº de chamada": 26, "Nome do Aluno": "FABIO JOÃO FACHETTI", "RA":
+115865254},
+          {"Nº de chamada": 27, "Nome do Aluno": "FABIO LOPES DA SILVA", "RA":
+115845915},
+          {"Nº de chamada": 28, "Nome do Aluno": "FELIPE DE OLIVEIRA AMARAL", "RA":
+115065795},
+          {"Nº de chamada": 29, "Nome do Aluno": "FERNANDA DIAS GOMES", "RA":
+115845960},
+          {"Nº de chamada": 30, "Nome do Aluno": "FERNANDA REIS BONFIM", "RA":
+115845906},
+          {"Nº de chamada": 31, "Nome do Aluno": "FERNANDA RODRIGUES OLIVEIRA",
+"RA": 116242829}
+       ],
+       "7º Ano B": [
+          {"Nº de chamada": 1, "Nome do Aluno": "ABADIA SILVA SANTOS", "RA":
+115045671},
+          {"Nº de chamada": 2, "Nome do Aluno": "ABDERRAHMANE BELAOUI", "RA":
+120546783},
+          {"Nº de chamada": 3, "Nome do Aluno": "ABNER GONÇALVES FERREIRA", "RA":
+116234567},
+         {"Nº de chamada": 4, "Nome do Aluno": "ABRAÃO CÂNDIDO OLIVEIRA", "RA":
+115234890},
+         {"Nº de chamada": 5, "Nome do Aluno": "ADEILSON SILVA SOUZA", "RA":
+121456789},
+         {"Nº de chamada": 6, "Nome do Aluno": "ADILSON PEREIRA COSTA", "RA":
+115678901},
+         {"Nº de chamada": 7, "Nome do Aluno": "ADILSON SANTOS RIBEIRO", "RA":
+115789012},
+         {"Nº de chamada": 8, "Nome do Aluno": "ADRIANA FERREIRA SILVA", "RA":
+115890123},
+         {"Nº de chamada": 9, "Nome do Aluno": "ADRIANO BRANDÃO MARTINS", "RA":
+116001234},
+         {"Nº de chamada": 10, "Nome do Aluno": "ÁGATA VIEIRA DOS SANTOS", "RA":
+116112345},
+         {"Nº de chamada": 11, "Nome do Aluno": "AGENOR CARVALHO LIMA", "RA":
+116223456},
+         {"Nº de chamada": 12, "Nome do Aluno": "AGNALDO FRANCISCO SOUZA",
+"RA": 116334567},
+         {"Nº de chamada": 13, "Nome do Aluno": "AGRÍCOLA GOMES RIBEIRO", "RA":
+116445678},
+         {"Nº de chamada": 14, "Nome do Aluno": "AILTON PEREIRA ROSA", "RA":
+116556789},
+         {"Nº de chamada": 15, "Nome do Aluno": "AINARA OLIVEIRA SANTOS", "RA":
+116667890},
+         {"Nº de chamada": 16, "Nome do Aluno": "AIRAN GOMES SILVA", "RA":
+116778901},
+         {"Nº de chamada": 17, "Nome do Aluno": "ALAN CARLOS MENEZES", "RA":
+116889012},
+         {"Nº de chamada": 18, "Nome do Aluno": "ALANDE OLIVEIRA SILVA", "RA":
+116990123},
+         {"Nº de chamada": 19, "Nome do Aluno": "ALARICO SANTOS FERREIRA", "RA":
+117001234},
+         {"Nº de chamada": 20, "Nome do Aluno": "ALASCA BEZERRA SILVA", "RA":
+117112345},
+         {"Nº de chamada": 21, "Nome do Aluno": "ALBA PAULA OLIVEIRA", "RA":
+117223456},
+         {"Nº de chamada": 22, "Nome do Aluno": "ALBANO CARLOS SANTOS", "RA":
+117334567},
+         {"Nº de chamada": 23, "Nome do Aluno": "ALBER SANTOS PEREIRA", "RA":
+117445678},
+         {"Nº de chamada": 24, "Nome do Aluno": "ALBERTO GOMES SANTOS", "RA":
+117556789}
+       ]
+    };
+
+    // Questões com alternativas, imagens e gabarito
+    const questoes = [
+       {
+             numero: 1,
+             tipo: "multipla",
+             texto: "A Mata Atlântica é um bioma que se caracteriza principalmente por qual vegetação?",
+             imagem: "assets/amazon.jpg",
+             alternativas: [
+                { letra: "A", texto: "Árvores isoladas e arbustos espaçados", correta: false },
+                { letra: "B", texto: "Floresta tropical densa e exuberante", correta: true },
+                { letra: "C", texto: "Gramíneas e plantas herbáceas", correta: false },
+                { letra: "D", texto: "Cactos e plantas suculentas", correta: false }
+             ]
+         },
+         {
+             numero: 2,
+             tipo: "multipla",
+             texto: "Qual é o principal bioma que sofre com o assoreamento e a degradação da qualidade da água?",
+             imagem: "assets/pantanal.jpg",
+             alternativas: [
+                { letra: "A", texto: "Cerrado", correta: false },
+                { letra: "B", texto: "Caatinga", correta: false },
+                { letra: "C", texto: "Ecossistemas aquáticos", correta: true },
+                { letra: "D", texto: "Campos Sulinos", correta: false }
+             ]
+         },
+         {
+             numero: 3,
+             tipo: "multipla",
+             texto: "O Pantanal é caracterizado principalmente por qual aspecto?",
+             imagem: "assets/mata-atlantica.jpg",
+             alternativas: [
+                { letra: "A", texto: "Secas extremas e falta de água", correta: false },
+                { letra: "B", texto: "Florestas densas e clima úmido", correta: false },
+                { letra: "C", texto: "Inundações sazonais e campos alagáveis", correta: true },
+                { letra: "D", texto: "Clima árido com chuvas raras", correta: false }
+            ]
+       },
+       {
+             numero: 4,
+             tipo: "multipla",
+             texto: "A Caatinga apresenta adaptações específicas das plantas. Qual é uma característica importante?",
+             imagem: "assets/cerrado.jpg",
+             alternativas: [
+                { letra: "A", texto: "Folhas largas para maior transpiração", correta: false },
+                { letra: "B", texto: "Raízes profundas para buscar água no solo", correta: true },
+                { letra: "C", texto: "Ausência de raízes sistema radicular", correta: false },
+                { letra: "D", texto: "Folhas perenes e verdes o ano todo", correta: false }
+             ]
+         },
+         {
+             numero: 5,
+             tipo: "multipla",
+             texto: "Qual bioma brasileiro é conhecido como 'Pulmão do Planeta'?",
+             imagem: "assets/amazon.jpg",
+             alternativas: [
+                { letra: "A", texto: "Mata Atlântica", correta: false },
+                { letra: "B", texto: "Cerrado", correta: false },
+                { letra: "C", texto: "Amazônia", correta: true },
+                { letra: "D", texto: "Pantanal", correta: false }
+             ]
+         },
+         {
+             numero: 6,
+             tipo: "multipla",
+             texto: "Os Campos Sulinos são um bioma que apresenta principalmente qual cobertura vegetal?",
+             imagem: "assets/campos-sulinos.jpg",
+             alternativas: [
+                { letra: "A", texto: "Florestas denses", correta: false },
+                { letra: "B", texto: "Desertos e dunas de areia", correta: false },
+                { letra: "C", texto: "Gramíneas e pastagens naturais", correta: true },
+                { letra: "D", texto: "Mangues e espécies marinhas", correta: false }
+            ]
+       },
+       {
+             numero: 7,
+             tipo: "multipla",
+             texto: "O Cerrado é um bioma que sofre grande impacto pela atividade agrícola. Qual é um serviço ecossistêmico importante do Cerrado?",
+             imagem: "assets/cerrado.jpg",
+             alternativas: [
+                { letra: "A", texto: "Regulação do ciclo da água", correta: true },
+                { letra: "B", texto: "Produção de petróleo", correta: false },
+                { letra: "C", texto: "Geração de energia eólica", correta: false },
+                { letra: "D", texto: "Exploração de minérios", correta: false }
+             ]
+         },
+         {
+             numero: 8,
+             tipo: "dissertativa",
+             texto: "Explique como as mudanças climáticas podem afetar os diferentes biomas brasileiros, mencionando pelo menos dois biomas e suas possíveis consequências.",
+             imagem: "assets/climate.jpg"
+         },
+         {
+             numero: 9,
+             tipo: "dissertativa",
+             texto: "Descreva os principais serviços ecossistêmicos fornecidos pela Mata Atlântica e explique como a sua preservação beneficia as comunidades humanas.",
+             imagem: "assets/mata-atlantica.jpg"
+         },
+         {
+             numero: 10,
+           tipo: "dissertativa",
+           texto: "Apresente uma proposta de ação para a preservação de um bioma brasileiro de sua escolha, explicando as estratégias e os benefícios que essa ação traria.",
+           imagem: "assets/conservation.jpg"
+        }
+     ];
+
+     // Inicializar página
+     document.addEventListener('DOMContentLoaded', function() {
+         renderizarQuestoes();
+     });
+
+     function renderizarQuestoes() {
+       const section = document.getElementById('questionsSection');
+       section.innerHTML = '';
+
+       questoes.forEach(q => {
+         const questionDiv = document.createElement('div');
+         questionDiv.className = 'question-block';
+         questionDiv.innerHTML = `             <div class="question-number">${q.numero}</div>             <div class="question-text">${q.texto}</div>             <img src="${q.imagem}" alt="Questão ${q.numero}" class="question-image">          `;
+
+          if (q.tipo === 'multipla') {
+              const optionsDiv = document.createElement('div');
+              optionsDiv.className = 'multiple-choice';
+
+             q.alternativas.forEach(alt => {
+                 const optionDiv = document.createElement('div');
+                 optionDiv.className = 'option';
+                 optionDiv.innerHTML = `                      <input type="radio" id="q${q.numero}${alt.letra}" name="q${q.numero}" value="${alt.letra}" data-correct="${alt.correta}" onchange="selecionarOpcao(this)">                      <label for="q${q.numero}${alt.letra}">${alt.letra}. ${alt.texto}</label>                  `;
+                 optionDiv.addEventListener('click', () => {
+                     document.getElementById(`q${q.numero}${alt.letra}`).checked = true;
+                     selecionarOpcao(document.getElementById(`q${q.numero}${alt.letra}`));
+                 });
+                 optionsDiv.appendChild(optionDiv);
+             });
+             questionDiv.appendChild(optionsDiv);
+          } else {
+             const essayDiv = document.createElement('div');
+             essayDiv.className = 'essay-question';
+             essayDiv.innerHTML = `<textarea id="q${q.numero}" placeholder="Digite sua resposta aqui..."></textarea>`;
+             questionDiv.appendChild(essayDiv);
+          }
+
+              section.appendChild(questionDiv);
+        });
+    }
+
+    function selecionarOpcao(radio) {
+      const options = document.querySelectorAll(`input[name="${radio.name}"]`);
+      options.forEach(opt => {
+          opt.parentElement.classList.remove('selected');
+      });
+      radio.parentElement.classList.add('selected');
+    }
+
+    function carregarAlunos() {
+      const turma = document.getElementById('turma').value;
+      const alunoSelect = document.getElementById('aluno');
+      alunoSelect.innerHTML = '<option value="">Selecione seu nome...</option>';
+
+        if (turma && alunosData[turma]) {
+            alunosData[turma].forEach(aluno => {
+                const option = document.createElement('option');
+                option.value = JSON.stringify(aluno);
+                option.textContent = aluno['Nome do Aluno'];
+                alunoSelect.appendChild(option);
+            });
+            alunoSelect.disabled = false;
+        } else {
+            alunoSelect.disabled = true;
+        }
+    }
+
+    function mostrarInfoAluno() {
+      const alunoSelect = document.getElementById('aluno');
+      const aluno = JSON.parse(alunoSelect.value);
+
+      if (aluno && aluno['Nome do Aluno']) {
+          document.getElementById('infoTurma').textContent =
+document.getElementById('turma').value;
+          document.getElementById('infoNome').textContent = aluno['Nome do Aluno'];
+          document.getElementById('infoRA').textContent = aluno['RA'];
+        document.getElementById('studentInfo').style.display = 'block';
+    }
+}
+
+function validarRespostas() {
+  const turma = document.getElementById('turma').value;
+  const aluno = document.getElementById('aluno').value;
+
+    if (!turma || !aluno) {
+        mostrarMensagem('Por favor, selecione sua turma e nome!', 'error');
+        return false;
+    }
+
+    return true;
+}
+
+function enviarRespostas() {
+  if (!validarRespostas()) return;
+
+    document.getElementById('loading').classList.add('show');
+    const respostas = coletarRespostas();
+
+    // Simular envio (será integrado com Google Sheets)
+    setTimeout(() => {
+       enviarParaGoogleSheets(respostas);
+    }, 1000);
+}
+
+function coletarRespostas() {
+  const turma = document.getElementById('turma').value;
+  const alunoData = JSON.parse(document.getElementById('aluno').value);
+  const respostas = {
+     turma: turma,
+     nome: alunoData['Nome do Aluno'],
+     ra: alunoData['RA'],
+     timestamp: new Date().toLocaleString('pt-BR'),
+     respostas: {}
+  };
+
+    questoes.forEach(q => {
+      if (q.tipo === 'multipla') {
+          const radio = document.querySelector(`input[name="q${q.numero}"]:checked`);
+          if (radio) {
+              respostas.respostas[`Q${q.numero}`] = radio.value;
+          }
+      } else {
+          const textarea = document.getElementById(`q${q.numero}`);
+          if (textarea.value.trim()) {
+                  respostas.respostas[`Q${q.numero}`] = textarea.value.trim();
+              }
+          }
+    });
+
+    return respostas;
+}
+
+function enviarParaGoogleSheets(respostas) {
+  // Esta função será chamada pelo Google Apps Script
+  google.script.run.withSuccessHandler(function(result) {
+     document.getElementById('loading').classList.remove('show');
+     if (result.success) {
+         mostrarMensagem('Respostas enviadas com sucesso!', 'success');
+         setTimeout(() => {
+            limparFormulario();
+         }, 2000);
+     } else {
+         mostrarMensagem('Erro ao enviar respostas: ' + result.message, 'error');
+     }
+  }).enviarRespostasParaSheet(JSON.stringify(respostas));
+}
+
+function mostrarMensagem(texto, tipo) {
+  const message = document.getElementById('message');
+  message.textContent = texto;
+  message.className = 'message ' + tipo;
+  setTimeout(() => {
+     message.style.display = 'none';
+  }, 4000);
+}
+
+function limparFormulario() {
+  document.getElementById('turma').value = '';
+  document.getElementById('aluno').value = '';
+  document.getElementById('aluno').disabled = true;
+  document.getElementById('studentInfo').style.display = 'none';
+
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.checked = false;
+        radio.parentElement.classList.remove('selected');
+    });
+
+    document.querySelectorAll('textarea').forEach(textarea => {
+        textarea.value = '';
+    });
+
+    document.getElementById('message').style.display = 'none';
+     }
+  </script>
+</body>
+</html>
