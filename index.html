@@ -1,749 +1,974 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atividade: Biomas e Ecossistemas Brasileiros</title>
-  <style>
-     *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-     }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biomas Brasileiros e Ecossistemas — Atividade 3º Bimestre — 7º Ano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mata-900:#0f2e22;
+    --mata-800:#163d2c;
+    --mata-700:#1b4332;
+    --mata-600:#265c41;
+    --verde-selecionado:#0e4429;
+    --areia:#f5f1e6;
+    --areia-card:#fffdf8;
+    --terracota:#bd5b2a;
+    --terracota-dark:#8f4420;
+    --agua:#0d6e8f;
+    --texto:#22291f;
+    --texto-suave:#5b6357;
+    --linha:#ddd6c3;
+    --erro:#a4222c;
+    --radius:16px;
+    --sombra-alto: 7px 7px 14px rgba(27,67,50,0.16), -7px -7px 14px rgba(255,255,255,0.85);
+    --sombra-alto-hover: 9px 9px 16px rgba(27,67,50,0.20), -9px -9px 16px rgba(255,255,255,0.9);
+    --sombra-fundo: inset 5px 5px 10px rgba(0,0,0,0.32), inset -4px -4px 8px rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 500px at 10% -10%, rgba(27,67,50,0.10), transparent 60%),
+      radial-gradient(1000px 500px at 100% 0%, rgba(189,91,42,0.08), transparent 55%),
+      var(--areia);
+    color:var(--texto);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    padding-bottom:80px;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',serif;}
+  a{color:var(--agua);}
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-    }
+  /* ===== CABEÇALHO DA ESCOLA ===== */
+  .cabecalho{
+    background: linear-gradient(160deg, var(--mata-900), var(--mata-700) 60%, var(--mata-600));
+    color:#f4f7ef;
+    padding:34px 22px 30px;
+    border-bottom:6px solid var(--terracota);
+    position:relative;
+    overflow:hidden;
+  }
+  .cabecalho::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 14px 14px;
+    opacity:.5;
+    pointer-events:none;
+  }
+  .cabecalho-inner{max-width:900px; margin:0 auto; position:relative;}
+  .escola-nome{
+    font-size:clamp(20px,3.4vw,28px);
+    font-weight:700;
+    letter-spacing:.2px;
+    margin:0 0 4px;
+  }
+  .atividade-titulo{
+    margin:2px 0 22px;
+    color:#cfe3d3;
+    font-size:15px;
+    font-weight:500;
+  }
+  .campos-aluno{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:14px 16px;
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:var(--radius);
+    padding:18px;
+    backdrop-filter: blur(2px);
+  }
+  .campo{display:flex; flex-direction:column; gap:6px;}
+  .campo.full{grid-column:1 / -1;}
+  .campo label{font-size:12.5px; text-transform:uppercase; letter-spacing:.6px; color:#bfe0c6; font-weight:600;}
+  .campo select, .campo input{
+    padding:11px 12px;
+    border-radius:10px;
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    background:#fffdf8;
+    color:var(--texto);
+  }
+  .campo select:disabled{opacity:.55; cursor:not-allowed;}
+  .campo input[readonly]{background:#eef2ea; color:var(--texto-suave);}
+  .ra-box{
+    display:flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,0.09);
+    border:1px dashed rgba(255,255,255,0.35);
+    border-radius:10px;
+    padding:10px 14px;
+    font-size:14px;
+    color:#e7f0e3;
+    grid-column: 1 / -1;
+  }
+  .ra-box strong{color:#fff;}
+  #alunoResumo{color:#fff; font-weight:600;}
 
-    .container {
-       max-width: 1000px;
-       margin: 0 auto;
-       background: white;
-       border-radius: 10px;
-       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-       overflow: hidden;
-    }
+  /* ===== CONTAINER GERAL ===== */
+  .container{max-width:900px; margin:0 auto; padding:26px 18px 10px;}
 
-    .header {
-      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
+  .intro-guia{
+    background:var(--areia-card);
+    border:1px solid var(--linha);
+    border-left:6px solid var(--mata-700);
+    border-radius:12px;
+    padding:16px 18px;
+    font-size:14.5px;
+    color:var(--texto-suave);
+    margin-bottom:28px;
+  }
+  .intro-guia b{color:var(--texto);}
 
-    .header h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
+  .progresso-wrap{
+    position:sticky; top:0; z-index:20;
+    background:rgba(245,241,230,0.92);
+    backdrop-filter: blur(6px);
+    padding:10px 18px;
+    border-bottom:1px solid var(--linha);
+  }
+  .progresso-inner{max-width:900px; margin:0 auto; display:flex; align-items:center; gap:12px;}
+  .progresso-barra{flex:1; height:8px; background:#e4ded0; border-radius:6px; overflow:hidden;}
+  .progresso-fill{height:100%; width:0%; background:linear-gradient(90deg, var(--terracota), var(--mata-700)); transition:width .3s ease;}
+  .progresso-texto{font-size:12.5px; font-weight:700; color:var(--mata-800); white-space:nowrap;}
 
-    .header p {
-      font-size: 14px;
-      opacity: 0.9;
-    }
+  /* ===== QUESTÕES ===== */
+  .questao{
+    background:var(--areia-card);
+    border-radius:20px;
+    border:1px solid var(--linha);
+    padding:26px 24px 28px;
+    margin-bottom:26px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.02), 0 14px 30px -20px rgba(27,67,50,0.35);
+    scroll-margin-top:70px;
+  }
+  .questao-cabeca{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
+    margin-bottom:6px;
+  }
+  .aula-tag{
+    display:inline-block;
+    font-size:11.5px; font-weight:700; letter-spacing:.4px;
+    color:var(--mata-700);
+    background:#e6efe4;
+    border:1px solid #cfe0cb;
+    padding:4px 10px;
+    border-radius:100px;
+    margin-bottom:10px;
+  }
+  .tipo-tag{
+    font-size:11px; font-weight:700;
+    color:var(--terracota-dark);
+    background:#fbe6d9;
+    border:1px solid #f0c8a8;
+    padding:4px 10px;
+    border-radius:100px;
+    white-space:nowrap;
+    height:fit-content;
+  }
+  .questao h3.tema{
+    margin:0 0 12px;
+    font-size:21px;
+    color:var(--mata-900);
+  }
+  .contexto{font-size:15px; color:var(--texto); margin-bottom:14px;}
+  .contexto .fonte{display:block; font-size:12px; color:var(--texto-suave); margin-top:4px; font-style:italic;}
 
-    .form-section {
-       background: #f8f9fa;
-    padding: 20px;
-    border-bottom: 2px solid #e0e0e0;
-}
+  .midia{
+    display:flex; gap:16px; flex-wrap:wrap;
+    margin:14px 0 18px;
+    align-items:stretch;
+  }
+  .midia-img{
+    flex:1 1 240px;
+    max-width:320px;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow: var(--sombra-alto);
+    background:#e9e4d4;
+  }
+  .midia-img img{width:100%; height:190px; object-fit:cover; display:block;}
+  .midia-img .legenda{font-size:11.5px; color:var(--texto-suave); padding:8px 10px; background:#fffdf8;}
 
-.form-group {
-   margin-bottom: 15px;
-}
+  .midia-dado{
+    flex:1 1 300px;
+    background:#fbf9f2;
+    border:1px solid var(--linha);
+    border-radius:14px;
+    padding:14px 16px;
+    box-shadow: var(--sombra-alto);
+  }
+  .midia-dado h4{margin:0 0 10px; font-size:13.5px; text-transform:uppercase; letter-spacing:.5px; color:var(--mata-800);}
 
-.form-group label {
-   display: block;
-   font-weight: 600;
-   margin-bottom: 8px;
-   color: #333;
-}
+  table.tabela-dados{width:100%; border-collapse:collapse; font-size:13px;}
+  table.tabela-dados th, table.tabela-dados td{
+    text-align:left; padding:7px 8px; border-bottom:1px solid #e6e0cf;
+  }
+  table.tabela-dados th{color:var(--mata-800); font-weight:700;}
 
-.form-group select {
-   width: 100%;
-   padding: 10px;
-   border: 2px solid #667eea;
-   border-radius: 5px;
-   font-size: 14px;
-   background: white;
-   cursor: pointer;
-}
+  .grafico-barras{display:flex; align-items:flex-end; gap:10px; height:140px; padding-top:10px;}
+  .barra-item{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%;}
+  .barra{
+    width:100%;
+    max-width:38px;
+    border-radius:6px 6px 3px 3px;
+    background:linear-gradient(180deg, var(--terracota), var(--terracota-dark));
+    position:relative;
+  }
+  .barra.verde{background:linear-gradient(180deg, var(--mata-600), var(--mata-900));}
+  .barra .valor{position:absolute; top:-20px; left:0; right:0; text-align:center; font-size:11px; font-weight:700; color:var(--texto);}
+  .barra-label{margin-top:6px; font-size:11px; text-align:center; color:var(--texto-suave); line-height:1.2;}
+  .grafico-nota{font-size:10.5px; color:var(--texto-suave); margin-top:8px; font-style:italic;}
 
-.form-group select:focus {
-   outline: none;
-   border-color: #764ba2;
-   box-shadow: 0 0 5px rgba(118, 75, 162, 0.3);
-}
+  .pergunta{font-weight:600; font-size:15.5px; margin:6px 0 16px; color:var(--mata-900);}
 
-.student-info {
-   background: #e3f2fd;
-   padding: 10px;
-   border-radius: 5px;
-   margin-top: 10px;
-   display: none;
-}
+  /* ===== ALTERNATIVAS "ALTO RELEVO" ===== */
+  .alternativas{display:grid; gap:12px;}
+  .alt-btn{
+    display:flex; align-items:flex-start; gap:12px;
+    text-align:left;
+    width:100%;
+    padding:14px 16px;
+    border:none;
+    border-radius:14px;
+    background: linear-gradient(150deg, #fffefb, #edf1e6);
+    box-shadow: var(--sombra-alto);
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;
+    color:var(--texto);
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease, color .12s ease;
+  }
+  .alt-btn:hover{ box-shadow: var(--sombra-alto-hover); transform: translateY(-1px); }
+  .alt-btn .letra{
+    flex:0 0 auto;
+    width:28px; height:28px;
+    border-radius:50%;
+    background:#fff;
+    border:2px solid var(--mata-700);
+    color:var(--mata-700);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:13px;
+    transition: all .12s ease;
+  }
+  .alt-btn.selecionada{
+    background: var(--verde-selecionado);
+    color:#ffffff;
+    font-weight:700;
+    box-shadow: var(--sombra-fundo);
+    transform: translateY(2px);
+  }
+  .alt-btn.selecionada .letra{
+    background: var(--verde-selecionado);
+    border-color:#fff;
+    color:#fff;
+  }
 
-.student-info p {
-   margin: 5px 0;
-   font-size: 14px;
-}
+  /* ===== DISSERTATIVAS ===== */
+  textarea.resposta-dissertativa{
+    width:100%;
+    min-height:130px;
+    border-radius:14px;
+    border:1px solid var(--linha);
+    padding:14px;
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;
+    background:#fffefb;
+    box-shadow: inset 3px 3px 8px rgba(0,0,0,0.05);
+    resize:vertical;
+  }
+  textarea.resposta-dissertativa:focus{outline:2px solid var(--mata-600); outline-offset:2px;}
+  .contador-caracteres{font-size:11.5px; color:var(--texto-suave); text-align:right; margin-top:6px;}
 
-.student-info strong {
-   color: #1976d2;
-}
-.questions-section {
-  padding: 30px 20px;
-}
+  /* ===== ENVIO ===== */
+  .envio-box{
+    background: linear-gradient(160deg, var(--mata-900), var(--mata-700));
+    color:#f4f7ef;
+    border-radius:20px;
+    padding:26px 24px;
+    text-align:center;
+    margin-top:10px;
+  }
+  .envio-box p{color:#d9e6d5; font-size:13.5px; margin:0 0 16px;}
+  #btnEnviar{
+    background: var(--terracota);
+    color:#fff;
+    border:none;
+    padding:15px 36px;
+    border-radius:100px;
+    font-size:16px;
+    font-weight:700;
+    font-family:'Inter',sans-serif;
+    cursor:pointer;
+    box-shadow: 0 10px 22px -8px rgba(189,91,42,0.7);
+    transition: transform .12s ease, background .12s ease;
+  }
+  #btnEnviar:hover{ background:var(--terracota-dark); transform:translateY(-2px); }
+  #btnEnviar:disabled{opacity:.55; cursor:not-allowed; transform:none;}
+  .status-msg{margin-top:14px; font-size:13.5px; font-weight:600; min-height:20px;}
+  .status-msg.ok{color:#a8f0b6;}
+  .status-msg.erro{color:#ffb3ba;}
 
-.question-block {
-  margin-bottom: 40px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #e0e0e0;
-}
+  footer.rodape{text-align:center; font-size:12px; color:var(--texto-suave); padding:24px 18px;}
 
-.question-block:last-child {
-  border-bottom: none;
-}
-
-.question-number {
-  display: inline-block;
-  background: #667eea;
-  color: white;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 35px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.question-text {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #333;
-  line-height: 1.5;
-}
-
-.question-image {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Questões de Múltipla Escolha */
-.multiple-choice {
-   display: flex;
-   flex-direction: column;
-    gap: 12px;
-}
-
-.option {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  background: white;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.option:hover {
-  border-color: #667eea;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), inset 0 -3px 6px rgba(0, 0, 0, 0.15);
-}
-
-.option.selected {
-  background: #1b5e20;
-  color: white;
-  border-color: #1b5e20;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.2);
-  transform: translateY(2px);
-}
-
-.option input[type="radio"] {
-  margin-right: 15px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.option label {
-  flex-grow: 1;
-  cursor: pointer;
-  font-size: 15px;
-  margin: 0;
-}
-
-/* Questões Dissertativas */
-.essay-question {
-   margin-top: 15px;
-}
-.essay-question textarea {
-   width: 100%;
-   min-height: 120px;
-   padding: 12px;
-   border: 2px solid #ddd;
-   border-radius: 8px;
-   font-family: 'Segoe UI', sans-serif;
-   font-size: 14px;
-   resize: vertical;
-   transition: border-color 0.3s ease;
-}
-
-.essay-question textarea:focus {
-   outline: none;
-   border-color: #667eea;
-   box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
-}
-
-.essay-image {
-   max-width: 400px;
-   height: auto;
-   border-radius: 8px;
-   margin-bottom: 15px;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.button-group {
-  display: flex;
-  gap: 15px;
-  padding: 30px 20px;
-  background: #f8f9fa;
-  justify-content: center;
-}
-
-button {
-  padding: 12px 30px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-submit {
-   background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-   color: white;
-   min-width: 200px;
-}
-
-.btn-submit:hover {
-   transform: translateY(-2px);
-   box-shadow: 0 8px 15px rgba(30, 60, 114, 0.3);
-}
-
-.btn-submit:active {
-   transform: translateY(0);
-}
-
-.btn-reset {
-   background: #f44336;
-   color: white;
-   min-width: 150px;
-}
-
-.btn-reset:hover {
-   background: #d32f2f;
-   transform: translateY(-2px);
-}
-
-.message {
-  display: none;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.message.success {
-  background: #4caf50;
-  color: white;
-  display: block;
-}
-
-.message.error {
-  background: #f44336;
-  color: white;
-  display: block;
-}
-
-.loading {
-   display: none;
-   text-align: center;
-   padding: 20px;
-        color: #667eea;
-        font-size: 16px;
-    }
-
-    .loading.show {
-       display: block;
-    }
-
-    @media (max-width: 768px) {
-     .header h1 {
-       font-size: 20px;
-     }
-
-        .button-group {
-          flex-direction: column;
-        }
-
-        button {
-          width: 100%;
-        }
-    }
-  </style>
+  @media(max-width:640px){
+    .campos-aluno{grid-template-columns:1fr;}
+    .midia{flex-direction:column;}
+    .midia-img{max-width:none;}
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-       <h1>E.E. PROFª WANDA MASCAGNI DE SÁ</h1>
-       <p>Atividade: Biomas e Ecossistemas Brasileiros - 7º Ano</p>
-       <p>3º Bimestre - Ciências da Natureza</p>
-    </div>
 
-    <div class="form-section">
-      <div class="form-group">
-         <label for="turma">TURMA:</label>
-         <select id="turma" onchange="carregarAlunos()">
-            <option value="">Selecione a turma...</option>
-            <option value="7º Ano A">7º Ano A</option>
-            <option value="7º Ano B">7º Ano B</option>
-         </select>
+<header class="cabecalho">
+  <div class="cabecalho-inner">
+    <h1 class="escola-nome">E.E. PROFª WANDA MASCAGNI DE SÁ.</h1>
+    <p class="atividade-titulo">Ciências — Biomas Brasileiros e Ecossistemas · 3º Bimestre · 7º Ano · Aulas 1 a 10</p>
+
+    <div class="campos-aluno">
+      <div class="campo">
+        <label for="selTurma">Turma</label>
+        <select id="selTurma">
+          <option value="">Selecione a turma</option>
+          <option value="7°Ano A">7° Ano A</option>
+          <option value="7°Ano B">7° Ano B</option>
+        </select>
       </div>
-
-        <div class="form-group">
-          <label for="aluno">NOME:</label>
-          <select id="aluno" onchange="mostrarInfoAluno()" disabled>
-             <option value="">Selecione seu nome...</option>
-          </select>
-        </div>
-      <div class="student-info" id="studentInfo">
-         <p>Turma: <strong id="infoTurma"></strong></p>
-         <p>Nome: <strong id="infoNome"></strong></p>
-         <p>RA: <strong id="infoRA"></strong></p>
+      <div class="campo">
+        <label for="selNome">Nome do aluno(a)</label>
+        <select id="selNome" disabled>
+          <option value="">Selecione a turma primeiro</option>
+        </select>
+      </div>
+      <div class="ra-box">
+        RA: <strong id="raAluno">—</strong>
+        <span id="alunoResumo" style="margin-left:auto;"></span>
       </div>
     </div>
+  </div>
+</header>
 
-    <div class="questions-section" id="questionsSection">
-      <!-- QUESTÕES SERÃO INSERIDAS AQUI -->
-    </div>
+<div class="progresso-wrap">
+  <div class="progresso-inner">
+    <span class="progresso-texto" id="progressoTexto">0 / 10 respondidas</span>
+    <div class="progresso-barra"><div class="progresso-fill" id="progressoFill"></div></div>
+  </div>
+</div>
 
-   <div class="button-group">
-     <button class="btn-submit" onclick="enviarRespostas()">ENVIAR
-RESPOSTAS</button>
-     <button class="btn-reset" onclick="limparFormulario()">LIMPAR TUDO</button>
-   </div>
+<main class="container">
 
-    <div class="loading" id="loading">Enviando respostas...</div>
-    <div class="message" id="message"></div>
+  <div class="intro-guia">
+    <b>Antes de começar:</b> esta atividade avalia as Aprendizagens Essenciais trabalhadas nas aulas 1 a 10 do 3º bimestre — <b>AE10: caracterizar os principais ecossistemas brasileiros, identificando impactos provocados por catástrofes naturais ou por alterações em seus componentes</b>. Observe com atenção as imagens, tabelas e gráficos de cada questão antes de responder: eles fazem parte do enunciado.
   </div>
 
-  <script>
-    // Dados dos alunos
-    const alunosData = {
-       "7º Ano A": [
-          {"Nº de chamada": 1, "Nome do Aluno": "ÁGATHA CAMPOS DE SOUSA", "RA":
-123687705},
-          {"Nº de chamada": 2, "Nome do Aluno": "ALBERT BARROS CARDOSO", "RA":
-114506468},
-          {"Nº de chamada": 3, "Nome do Aluno": "ALEXIA LOHANA COSTA DE OLIVEIRA", "RA": 115864647},
-          {"Nº de chamada": 4, "Nome do Aluno": "ANA CAROLINA GONÇALVES NASCIMENTO DE LIMA", "RA": 115865010},
-          {"Nº de chamada": 5, "Nome do Aluno": "ARIANE DIAS SOARES", "RA":
-115066892},
-          {"Nº de chamada": 6, "Nome do Aluno": "BARBARA MAIA SILVA", "RA":
-116500942},
-          {"Nº de chamada": 7, "Nome do Aluno": "CAROLINE CARLOS DE PAULA", "RA":
-121631871},
-          {"Nº de chamada": 8, "Nome do Aluno": "CLARA ANGELINA GONÇALVES GOMES", "RA": 115069279},
-          {"Nº de chamada": 9, "Nome do Aluno": "CLARISSA RODRIGUES DE OLIVEIRA",
-"RA": 121486283},
-          {"Nº de chamada": 10, "Nome do Aluno": "CONRADO BRÁS DE SOUZA", "RA":
-115864719},
-          {"Nº de chamada": 11, "Nome do Aluno": "DARLA MARIANA OLIVEIRA SILVA",
-"RA": 116210121},
-          {"Nº de chamada": 12, "Nome do Aluno": "DILENE MENDES DIAS", "RA":
-120661270},
-          {"Nº de chamada": 13, "Nome do Aluno": "DINA MARTINS FERREIRA", "RA":
-115845906},
-          {"Nº de chamada": 14, "Nome do Aluno": "DIOGO DE OLIVEIRA SILVA", "RA":
-116242848},
-          {"Nº de chamada": 15, "Nome do Aluno": "DOMINGOS NUNES SILVA NETO",
-"RA": 115066704},
-          {"Nº de chamada": 16, "Nome do Aluno": "DOUGLAS RAFAEL CORDEIRO VIEIRA", "RA": 121686485},
-          {"Nº de chamada": 17, "Nome do Aluno": "EDSON HENRIQUE RAMOS RIBEIRO", "RA": 121643887},
-          {"Nº de chamada": 18, "Nome do Aluno": "ELAINNE CRISTINA DA SILVA LIMA",
-"RA": 115878455},
-          {"Nº de chamada": 19, "Nome do Aluno": "ELIANA GONÇALVES PEREIRA", "RA":
-115845857},
-          {"Nº de chamada": 20, "Nome do Aluno": "ELIEL RODRIGUES OLIVEIRA", "RA":
-120713154},
-          {"Nº de chamada": 21, "Nome do Aluno": "ELISIA PEREIRA DOS SANTOS", "RA":
-115845749},
-          {"Nº de chamada": 22, "Nome do Aluno": "ELLEN SOPHIA CRUZ FERREIRA",
-"RA": 119895640},
-          {"Nº de chamada": 23, "Nome do Aluno": "EVELLYN MIRLA COSTA SILVA", "RA":
-122187432},
-          {"Nº de chamada": 24, "Nome do Aluno": "EVERSON RIBEIRO DA SILVA", "RA":
-115845784},
-          {"Nº de chamada": 25, "Nome do Aluno": "FABIANA OLIVEIRA GOMES", "RA":
-115865233},
-          {"Nº de chamada": 26, "Nome do Aluno": "FABIO JOÃO FACHETTI", "RA":
-115865254},
-          {"Nº de chamada": 27, "Nome do Aluno": "FABIO LOPES DA SILVA", "RA":
-115845915},
-          {"Nº de chamada": 28, "Nome do Aluno": "FELIPE DE OLIVEIRA AMARAL", "RA":
-115065795},
-          {"Nº de chamada": 29, "Nome do Aluno": "FERNANDA DIAS GOMES", "RA":
-115845960},
-          {"Nº de chamada": 30, "Nome do Aluno": "FERNANDA REIS BONFIM", "RA":
-115845906},
-          {"Nº de chamada": 31, "Nome do Aluno": "FERNANDA RODRIGUES OLIVEIRA",
-"RA": 116242829}
-       ],
-       "7º Ano B": [
-          {"Nº de chamada": 1, "Nome do Aluno": "ABADIA SILVA SANTOS", "RA":
-115045671},
-          {"Nº de chamada": 2, "Nome do Aluno": "ABDERRAHMANE BELAOUI", "RA":
-120546783},
-          {"Nº de chamada": 3, "Nome do Aluno": "ABNER GONÇALVES FERREIRA", "RA":
-116234567},
-         {"Nº de chamada": 4, "Nome do Aluno": "ABRAÃO CÂNDIDO OLIVEIRA", "RA":
-115234890},
-         {"Nº de chamada": 5, "Nome do Aluno": "ADEILSON SILVA SOUZA", "RA":
-121456789},
-         {"Nº de chamada": 6, "Nome do Aluno": "ADILSON PEREIRA COSTA", "RA":
-115678901},
-         {"Nº de chamada": 7, "Nome do Aluno": "ADILSON SANTOS RIBEIRO", "RA":
-115789012},
-         {"Nº de chamada": 8, "Nome do Aluno": "ADRIANA FERREIRA SILVA", "RA":
-115890123},
-         {"Nº de chamada": 9, "Nome do Aluno": "ADRIANO BRANDÃO MARTINS", "RA":
-116001234},
-         {"Nº de chamada": 10, "Nome do Aluno": "ÁGATA VIEIRA DOS SANTOS", "RA":
-116112345},
-         {"Nº de chamada": 11, "Nome do Aluno": "AGENOR CARVALHO LIMA", "RA":
-116223456},
-         {"Nº de chamada": 12, "Nome do Aluno": "AGNALDO FRANCISCO SOUZA",
-"RA": 116334567},
-         {"Nº de chamada": 13, "Nome do Aluno": "AGRÍCOLA GOMES RIBEIRO", "RA":
-116445678},
-         {"Nº de chamada": 14, "Nome do Aluno": "AILTON PEREIRA ROSA", "RA":
-116556789},
-         {"Nº de chamada": 15, "Nome do Aluno": "AINARA OLIVEIRA SANTOS", "RA":
-116667890},
-         {"Nº de chamada": 16, "Nome do Aluno": "AIRAN GOMES SILVA", "RA":
-116778901},
-         {"Nº de chamada": 17, "Nome do Aluno": "ALAN CARLOS MENEZES", "RA":
-116889012},
-         {"Nº de chamada": 18, "Nome do Aluno": "ALANDE OLIVEIRA SILVA", "RA":
-116990123},
-         {"Nº de chamada": 19, "Nome do Aluno": "ALARICO SANTOS FERREIRA", "RA":
-117001234},
-         {"Nº de chamada": 20, "Nome do Aluno": "ALASCA BEZERRA SILVA", "RA":
-117112345},
-         {"Nº de chamada": 21, "Nome do Aluno": "ALBA PAULA OLIVEIRA", "RA":
-117223456},
-         {"Nº de chamada": 22, "Nome do Aluno": "ALBANO CARLOS SANTOS", "RA":
-117334567},
-         {"Nº de chamada": 23, "Nome do Aluno": "ALBER SANTOS PEREIRA", "RA":
-117445678},
-         {"Nº de chamada": 24, "Nome do Aluno": "ALBERTO GOMES SANTOS", "RA":
-117556789}
-       ]
-    };
+  <!-- ================= QUESTÃO 1 — AULA 1 — ECOSSISTEMAS AQUÁTICOS ================= -->
+  <section class="questao" id="questao-1" data-qid="1" data-tipo="mc">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 1 · Ecossistemas aquáticos</span></div>
+      <span class="tipo-tag">Múltipla escolha</span>
+    </div>
+    <h3 class="tema">1. Componentes de um ecossistema aquático</h3>
 
-    // Questões com alternativas, imagens e gabarito
-    const questoes = [
-       {
-             numero: 1,
-             tipo: "multipla",
-             texto: "A Mata Atlântica é um bioma que se caracteriza principalmente por qual vegetação?",
-             imagem: "assets/amazon.jpg",
-             alternativas: [
-                { letra: "A", texto: "Árvores isoladas e arbustos espaçados", correta: false },
-                { letra: "B", texto: "Floresta tropical densa e exuberante", correta: true },
-                { letra: "C", texto: "Gramíneas e plantas herbáceas", correta: false },
-                { letra: "D", texto: "Cactos e plantas suculentas", correta: false }
-             ]
-         },
-         {
-             numero: 2,
-             tipo: "multipla",
-             texto: "Qual é o principal bioma que sofre com o assoreamento e a degradação da qualidade da água?",
-             imagem: "assets/pantanal.jpg",
-             alternativas: [
-                { letra: "A", texto: "Cerrado", correta: false },
-                { letra: "B", texto: "Caatinga", correta: false },
-                { letra: "C", texto: "Ecossistemas aquáticos", correta: true },
-                { letra: "D", texto: "Campos Sulinos", correta: false }
-             ]
-         },
-         {
-             numero: 3,
-             tipo: "multipla",
-             texto: "O Pantanal é caracterizado principalmente por qual aspecto?",
-             imagem: "assets/mata-atlantica.jpg",
-             alternativas: [
-                { letra: "A", texto: "Secas extremas e falta de água", correta: false },
-                { letra: "B", texto: "Florestas densas e clima úmido", correta: false },
-                { letra: "C", texto: "Inundações sazonais e campos alagáveis", correta: true },
-                { letra: "D", texto: "Clima árido com chuvas raras", correta: false }
-            ]
-       },
-       {
-             numero: 4,
-             tipo: "multipla",
-             texto: "A Caatinga apresenta adaptações específicas das plantas. Qual é uma característica importante?",
-             imagem: "assets/cerrado.jpg",
-             alternativas: [
-                { letra: "A", texto: "Folhas largas para maior transpiração", correta: false },
-                { letra: "B", texto: "Raízes profundas para buscar água no solo", correta: true },
-                { letra: "C", texto: "Ausência de raízes sistema radicular", correta: false },
-                { letra: "D", texto: "Folhas perenes e verdes o ano todo", correta: false }
-             ]
-         },
-         {
-             numero: 5,
-             tipo: "multipla",
-             texto: "Qual bioma brasileiro é conhecido como 'Pulmão do Planeta'?",
-             imagem: "assets/amazon.jpg",
-             alternativas: [
-                { letra: "A", texto: "Mata Atlântica", correta: false },
-                { letra: "B", texto: "Cerrado", correta: false },
-                { letra: "C", texto: "Amazônia", correta: true },
-                { letra: "D", texto: "Pantanal", correta: false }
-             ]
-         },
-         {
-             numero: 6,
-             tipo: "multipla",
-             texto: "Os Campos Sulinos são um bioma que apresenta principalmente qual cobertura vegetal?",
-             imagem: "assets/campos-sulinos.jpg",
-             alternativas: [
-                { letra: "A", texto: "Florestas denses", correta: false },
-                { letra: "B", texto: "Desertos e dunas de areia", correta: false },
-                { letra: "C", texto: "Gramíneas e pastagens naturais", correta: true },
-                { letra: "D", texto: "Mangues e espécies marinhas", correta: false }
-            ]
-       },
-       {
-             numero: 7,
-             tipo: "multipla",
-             texto: "O Cerrado é um bioma que sofre grande impacto pela atividade agrícola. Qual é um serviço ecossistêmico importante do Cerrado?",
-             imagem: "assets/cerrado.jpg",
-             alternativas: [
-                { letra: "A", texto: "Regulação do ciclo da água", correta: true },
-                { letra: "B", texto: "Produção de petróleo", correta: false },
-                { letra: "C", texto: "Geração de energia eólica", correta: false },
-                { letra: "D", texto: "Exploração de minérios", correta: false }
-             ]
-         },
-         {
-             numero: 8,
-             tipo: "dissertativa",
-             texto: "Explique como as mudanças climáticas podem afetar os diferentes biomas brasileiros, mencionando pelo menos dois biomas e suas possíveis consequências.",
-             imagem: "assets/climate.jpg"
-         },
-         {
-             numero: 9,
-             tipo: "dissertativa",
-             texto: "Descreva os principais serviços ecossistêmicos fornecidos pela Mata Atlântica e explique como a sua preservação beneficia as comunidades humanas.",
-             imagem: "assets/mata-atlantica.jpg"
-         },
-         {
-             numero: 10,
-           tipo: "dissertativa",
-           texto: "Apresente uma proposta de ação para a preservação de um bioma brasileiro de sua escolha, explicando as estratégias e os benefícios que essa ação traria.",
-           imagem: "assets/conservation.jpg"
-        }
-     ];
+    <div class="midia">
+      <figure class="midia-img">
+        <img class="bio-img" data-label="Ecossistema aquático" alt="Ecossistema aquático de água doce, com vegetação de várzea às margens de um rio"
+             src="https://commons.wikimedia.org/wiki/Special:FilePath/Vazea%20Rio%20Amazonas.jpg">
+        <figcaption class="legenda">Vegetação de várzea às margens de um rio de água doce — Wikimedia Commons.</figcaption>
+      </figure>
+      <div class="midia-dado">
+        <h4>Alguns corpos d'água do Estado de São Paulo</h4>
+        <table class="tabela-dados">
+          <thead><tr><th>Corpo d'água</th><th>Tipo</th><th>Uso principal</th></tr></thead>
+          <tbody>
+            <tr><td>Represa Billings</td><td>Reservatório artificial</td><td>Abastecimento / geração de energia</td></tr>
+            <tr><td>Rio Tietê</td><td>Rio</td><td>Drenagem urbana / navegação</td></tr>
+            <tr><td>Lagoa do Taquaral</td><td>Lagoa</td><td>Lazer / equilíbrio ecológico local</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-     // Inicializar página
-     document.addEventListener('DOMContentLoaded', function() {
-         renderizarQuestoes();
-     });
+    <p class="contexto">Uma turma do 7º ano visitou um trecho de rio próximo à escola para observar o ecossistema aquático. Os estudantes registraram, na água e nas margens, a presença de peixes, plantas aquáticas, algas, larvas de insetos e microrganismos decompositores, além de medirem a temperatura da água e a quantidade de luz que penetrava até o fundo.</p>
 
-     function renderizarQuestoes() {
-       const section = document.getElementById('questionsSection');
-       section.innerHTML = '';
+    <p class="pergunta">Com base no quadro, na imagem e no relato da visita, qual conjunto de elementos representa corretamente os <b>fatores bióticos</b> desse ecossistema aquático?</p>
 
-       questoes.forEach(q => {
-         const questionDiv = document.createElement('div');
-         questionDiv.className = 'question-block';
-         questionDiv.innerHTML = `             <div class="question-number">${q.numero}</div>             <div class="question-text">${q.texto}</div>             <img src="${q.imagem}" alt="Questão ${q.numero}" class="question-image">          `;
+    <div class="alternativas" data-question="1">
+      <button class="alt-btn" data-valor="A"><span class="letra">A</span><span>Temperatura da água, luz solar, sais minerais dissolvidos e pH.</span></button>
+      <button class="alt-btn" data-valor="B"><span class="letra">B</span><span>Peixes, plantas aquáticas, algas e microrganismos decompositores.</span></button>
+      <button class="alt-btn" data-valor="C"><span class="letra">C</span><span>Represas, barragens, canais de irrigação e comportas construídas pelo ser humano.</span></button>
+      <button class="alt-btn" data-valor="D"><span class="letra">D</span><span>Rochas do leito, sedimentos, correnteza e profundidade do rio.</span></button>
+    </div>
+  </section>
 
-          if (q.tipo === 'multipla') {
-              const optionsDiv = document.createElement('div');
-              optionsDiv.className = 'multiple-choice';
+  <!-- ================= QUESTÃO 2 — AULA 2 — MATA ATLÂNTICA ================= -->
+  <section class="questao" id="questao-2" data-qid="2" data-tipo="mc">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 2 · Mata Atlântica</span></div>
+      <span class="tipo-tag">Múltipla escolha</span>
+    </div>
+    <h3 class="tema">2. O conceito de bioma e a Mata Atlântica</h3>
 
-             q.alternativas.forEach(alt => {
-                 const optionDiv = document.createElement('div');
-                 optionDiv.className = 'option';
-                 optionDiv.innerHTML = `                      <input type="radio" id="q${q.numero}${alt.letra}" name="q${q.numero}" value="${alt.letra}" data-correct="${alt.correta}" onchange="selecionarOpcao(this)">                      <label for="q${q.numero}${alt.letra}">${alt.letra}. ${alt.texto}</label>                  `;
-                 optionDiv.addEventListener('click', () => {
-                     document.getElementById(`q${q.numero}${alt.letra}`).checked = true;
-                     selecionarOpcao(document.getElementById(`q${q.numero}${alt.letra}`));
-                 });
-                 optionsDiv.appendChild(optionDiv);
-             });
-             questionDiv.appendChild(optionsDiv);
-          } else {
-             const essayDiv = document.createElement('div');
-             essayDiv.className = 'essay-question';
-             essayDiv.innerHTML = `<textarea id="q${q.numero}" placeholder="Digite sua resposta aqui..."></textarea>`;
-             questionDiv.appendChild(essayDiv);
-          }
+    <div class="midia">
+      <figure class="midia-img">
+        <img class="bio-img" data-label="Mata Atlântica" alt="Floresta densa e preservada da Mata Atlântica"
+             src="https://commons.wikimedia.org/wiki/Special:FilePath/Floresta%20da%20Mata%20Atl%C3%A2ntica.jpg">
+        <figcaption class="legenda">Remanescente de floresta da Mata Atlântica — Wikimedia Commons.</figcaption>
+      </figure>
+      <div class="midia-dado">
+        <h4>Infográfico · Cobertura original x atual</h4>
+        <div class="grafico-barras">
+          <div class="barra-item">
+            <div class="barra verde" style="height:100%;"><span class="valor">100%</span></div>
+            <span class="barra-label">Área original do bioma</span>
+          </div>
+          <div class="barra-item">
+            <div class="barra" style="height:15%;"><span class="valor">~15%</span></div>
+            <span class="barra-label">Cobertura remanescente atual</span>
+          </div>
+        </div>
+        <p class="grafico-nota">Estimativa aproximada, com base em levantamentos ambientais sobre o bioma — valores ilustrativos para fins didáticos.</p>
+      </div>
+    </div>
 
-              section.appendChild(questionDiv);
-        });
-    }
+    <p class="contexto">A Mata Atlântica se estende, de forma fragmentada, ao longo de boa parte do litoral brasileiro, incluindo grandes áreas do estado de São Paulo. Apesar de ocupar hoje uma pequena fração de sua extensão original, o bioma ainda concentra altíssima biodiversidade de fauna e flora.</p>
 
-    function selecionarOpcao(radio) {
-      const options = document.querySelectorAll(`input[name="${radio.name}"]`);
-      options.forEach(opt => {
-          opt.parentElement.classList.remove('selected');
-      });
-      radio.parentElement.classList.add('selected');
-    }
+    <p class="pergunta">Considerando o que foi estudado sobre biomas e observando a imagem e o infográfico, qual alternativa <b>caracteriza corretamente</b> o conceito de bioma?</p>
 
-    function carregarAlunos() {
-      const turma = document.getElementById('turma').value;
-      const alunoSelect = document.getElementById('aluno');
-      alunoSelect.innerHTML = '<option value="">Selecione seu nome...</option>';
+    <div class="alternativas" data-question="2">
+      <button class="alt-btn" data-valor="A"><span class="letra">A</span><span>Uma unidade de conservação criada exclusivamente por lei federal.</span></button>
+      <button class="alt-btn" data-valor="B"><span class="letra">B</span><span>Uma única espécie de planta que predomina em um pequeno território isolado.</span></button>
+      <button class="alt-btn" data-valor="C"><span class="letra">C</span><span>Um conjunto de ecossistemas de uma grande região, com vegetação, clima, solo e fauna com características semelhantes entre si.</span></button>
+      <button class="alt-btn" data-valor="D"><span class="letra">D</span><span>Um tipo específico de solo encontrado apenas em regiões litorâneas.</span></button>
+    </div>
+  </section>
 
-        if (turma && alunosData[turma]) {
-            alunosData[turma].forEach(aluno => {
-                const option = document.createElement('option');
-                option.value = JSON.stringify(aluno);
-                option.textContent = aluno['Nome do Aluno'];
-                alunoSelect.appendChild(option);
-            });
-            alunoSelect.disabled = false;
-        } else {
-            alunoSelect.disabled = true;
-        }
-    }
+  <!-- ================= QUESTÃO 3 — AULA 3 — DESAFIOS MATA ATLÂNTICA (DISSERTATIVA) ================= -->
+  <section class="questao" id="questao-3" data-qid="3" data-tipo="dissertativa">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 3 · Desafios da preservação da Mata Atlântica</span></div>
+      <span class="tipo-tag">Dissertativa</span>
+    </div>
+    <h3 class="tema">3. Fragmentação e impactos ambientais na Mata Atlântica</h3>
 
-    function mostrarInfoAluno() {
-      const alunoSelect = document.getElementById('aluno');
-      const aluno = JSON.parse(alunoSelect.value);
+    <div class="midia">
+      <figure class="midia-img">
+        <img class="bio-img" data-label="Desafios da Mata Atlântica" alt="Área de morro coberta por Mata Atlântica preservada, cercada por áreas alteradas"
+             src="https://commons.wikimedia.org/wiki/Special:FilePath/Morro%20na%20mata%20atl%C3%A2ntica%20baiana.jpg">
+        <figcaption class="legenda">Remanescente florestal cercado por áreas de uso antrópico — Wikimedia Commons.</figcaption>
+      </figure>
+      <div class="midia-dado">
+        <h4>Trecho de reportagem (texto adaptado)</h4>
+        <p style="font-size:13px; margin:0 0 8px;">Especialistas em conservação vêm alertando que a Mata Atlântica se encontra hoje dividida em milhares de pequenos fragmentos florestais, isolados uns dos outros por pastagens, plantações e áreas urbanas. Esse isolamento dificulta o deslocamento de animais como o mico-leão-dourado entre diferentes áreas de mata, reduzindo as chances de reprodução e aumentando o risco de extinção local de várias espécies.</p>
+        <div class="grafico-barras" style="height:90px;">
+          <div class="barra-item"><div class="barra verde" style="height:100%;"><span class="valor">Grande</span></div><span class="barra-label">Fragmento antes do isolamento</span></div>
+          <div class="barra-item"><div class="barra" style="height:30%;"><span class="valor">Pequeno</span></div><span class="barra-label">Fragmento isolado atual</span></div>
+        </div>
+      </div>
+    </div>
 
-      if (aluno && aluno['Nome do Aluno']) {
-          document.getElementById('infoTurma').textContent =
-document.getElementById('turma').value;
-          document.getElementById('infoNome').textContent = aluno['Nome do Aluno'];
-          document.getElementById('infoRA').textContent = aluno['RA'];
-        document.getElementById('studentInfo').style.display = 'block';
-    }
+    <p class="pergunta">Considerando a imagem, o gráfico e o trecho de reportagem, <b>explique DOIS impactos ambientais</b> causados pela fragmentação da Mata Atlântica sobre a biodiversidade e <b>proponha UMA ação</b> que poderia contribuir para a preservação desse bioma no estado de São Paulo.</p>
+
+    <textarea class="resposta-dissertativa" data-question="3" maxlength="1200" placeholder="Escreva aqui sua resposta, explicando os dois impactos e propondo a ação de preservação..."></textarea>
+    <div class="contador-caracteres"><span data-contador="3">0</span>/1200 caracteres</div>
+  </section>
+
+  <!-- ================= QUESTÃO 4 — AULA 4 — CERRADO ================= -->
+  <section class="questao" id="questao-4" data-qid="4" data-tipo="mc">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 4 · Cerrado</span></div>
+      <span class="tipo-tag">Múltipla escolha</span>
+    </div>
+    <h3 class="tema">4. Adaptações das plantas do Cerrado</h3>
+
+    <div class="midia">
+      <figure class="midia-img">
+        <img class="bio-img" data-label="Vegetação do Cerrado" alt="Vegetação típica do Cerrado, com árvores de tronco retorcido e casca grossa"
+             src="https://commons.wikimedia.org/wiki/Special:FilePath/Vegeta%C3%A7%C3%A3o%20do%20cerrado.jpg">
+        <figcaption class="legenda">Vegetação típica do Cerrado, com árvores baixas e retorcidas — Wikimedia Commons.</figcaption>
+      </figure>
+      <div class="midia-dado">
+        <h4>Esquema · planta típica do Cerrado</h4>
+        <svg viewBox="0 0 220 150" style="width:100%; height:120px;">
+          <rect x="0" y="0" width="220" height="150" fill="#fbf9f2"/>
+          <line x1="0" y1="70" x2="220" y2="70" stroke="#c9c2a8" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="6" y="66" font-size="8" fill="#5b6357">solo</text>
+          <path d="M110 70 C90 55, 130 45, 110 20 M110 70 C130 60, 95 50, 110 25" stroke="#265c41" stroke-width="3" fill="none"/>
+          <circle cx="105" cy="22" r="12" fill="#4a7a52"/>
+          <circle cx="118" cy="30" r="10" fill="#3c6a45"/>
+          <rect x="105" y="60" width="10" height="14" fill="#8f6a3c"/>
+          <path d="M108 74 C95 90, 100 110, 90 135 M112 74 C120 95, 112 115, 122 140 M110 74 C110 100, 108 120, 108 145" stroke="#8f4420" stroke-width="2" fill="none"/>
+          <text x="60" y="120" font-size="8" fill="#5b6357">raízes profundas</text>
+        </svg>
+        <p class="grafico-nota">Esquema ilustrativo: casca grossa, caule tortuoso e raízes que atingem camadas profundas do solo.</p>
+      </div>
+    </div>
+
+    <p class="contexto">O Cerrado é marcado por um clima com estação seca bem definida e pela ocorrência natural de queimadas. As plantas típicas desse bioma, como mostra o esquema, apresentam caules retorcidos, casca espessa e sistema radicular muito profundo.</p>
+
+    <p class="pergunta">A casca grossa e as raízes profundas representadas no esquema são adaptações relacionadas principalmente a:</p>
+
+    <div class="alternativas" data-question="4">
+      <button class="alt-btn" data-valor="A"><span class="letra">A</span><span>Buscar água em camadas profundas do solo e resistir ao calor do fogo durante a estação seca.</span></button>
+      <button class="alt-btn" data-valor="B"><span class="letra">B</span><span>Impedir totalmente a realização de fotossíntese durante o período chuvoso.</span></button>
+      <button class="alt-btn" data-valor="C"><span class="letra">C</span><span>Aumentar a absorção direta de luz solar pelas raízes da planta.</span></button>
+      <button class="alt-btn" data-valor="D"><span class="letra">D</span><span>Facilitar exclusivamente a dispersão de sementes pelo vento.</span></button>
+    </div>
+  </section>
+
+  <!-- ================= QUESTÃO 5 — AULA 5 — DESAFIOS CERRADO ================= -->
+  <section class="questao" id="questao-5" data-qid="5" data-tipo="mc">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 5 · Desafios da preservação do Cerrado</span></div>
+      <span class="tipo-tag">Múltipla escolha</span>
+    </div>
+    <h3 class="tema">5. Impactos da expansão agropecuária no Cerrado</h3>
+
+    <div class="midia">
+      <div class="midia-dado" style="flex:1 1 100%;">
+        <h4>Gráfico ilustrativo · Área de vegetação nativa convertida em uso agropecuário</h4>
+        <div class="grafico-barras">
+          <div class="barra-item"><div class="barra" style="height:35%;"><span class="valor">35%</span></div><span class="barra-label">Década 1</span></div>
+          <div class="barra-item"><div class="barra" style="height:55%;"><span class="valor">55%</span></div><span class="barra-label">Década 2</span></div>
+          <div class="barra-item"><div class="barra" style="height:72%;"><span class="valor">72%</span></div><span class="barra-label">Década 3</span></div>
+          <div class="barra-item"><div class="barra" style="height:88%;"><span class="valor">88%</span></div><span class="barra-label">Década 4</span></div>
+        </div>
+        <p class="grafico-nota">Dados ilustrativos, elaborados para fins didáticos, representando a tendência de crescimento da área ocupada por atividades agropecuárias no bioma ao longo do tempo.</p>
+      </div>
+    </div>
+
+    <p class="contexto">O Cerrado é o segundo maior bioma brasileiro e abriga uma vegetação adaptada ao fogo e à seca, mas grande parte de sua área nativa vem sendo convertida em pastagens e lavouras, como sugere a tendência de crescimento representada no gráfico.</p>
+
+    <p class="pergunta">Com base no gráfico, qual é a principal consequência ambiental desse processo de conversão de áreas nativas para a biodiversidade do Cerrado?</p>
+
+    <div class="alternativas" data-question="5">
+      <button class="alt-btn" data-valor="A"><span class="letra">A</span><span>Diminuição imediata da temperatura média anual de toda a região.</span></button>
+      <button class="alt-btn" data-valor="B"><span class="letra">B</span><span>Aumento uniforme da profundidade do lençol freático em toda a região.</span></button>
+      <button class="alt-btn" data-valor="C"><span class="letra">C</span><span>Elevação constante da umidade do ar durante o período de seca.</span></button>
+      <button class="alt-btn" data-valor="D"><span class="letra">D</span><span>Redução do hábitat natural das espécies nativas, o que provoca perda de biodiversidade.</span></button>
+    </div>
+  </section>
+
+  <!-- ================= QUESTÃO 6 — AULA 6 — INVESTIGAÇÃO LOCAL (DISSERTATIVA) ================= -->
+  <section class="questao" id="questao-6" data-qid="6" data-tipo="dissertativa">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 6 · Investigação da biodiversidade local</span></div>
+      <span class="tipo-tag">Dissertativa</span>
+    </div>
+    <h3 class="tema">6. Investigando a biodiversidade do pátio da escola</h3>
+
+    <div class="midia">
+      <div class="midia-dado" style="flex:1 1 100%;">
+        <h4>Esquema · Método do quadrado de amostragem</h4>
+        <svg viewBox="0 0 260 140" style="width:100%; max-width:420px; height:140px;">
+          <rect x="0" y="0" width="260" height="140" fill="#eef2ea"/>
+          <rect x="40" y="20" width="180" height="100" fill="none" stroke="#1b4332" stroke-width="3"/>
+          <text x="45" y="16" font-size="9" fill="#5b6357">quadrado de amostragem (1m x 1m)</text>
+          <circle cx="80" cy="50" r="7" fill="#4a7a52"/>
+          <circle cx="130" cy="80" r="5" fill="#8f4420"/>
+          <circle cx="170" cy="45" r="8" fill="#265c41"/>
+          <circle cx="185" cy="95" r="4" fill="#bd5b2a"/>
+          <circle cx="110" cy="105" r="6" fill="#4a7a52"/>
+          <text x="50" y="132" font-size="8" fill="#5b6357">● plantas   ● fungos   ● outros organismos registrados</text>
+        </svg>
+        <p class="grafico-nota">O quadrado é lançado ao acaso sobre a área estudada; tudo o que está dentro dele é observado, contado e registrado em uma ficha de campo.</p>
+      </div>
+    </div>
+
+    <p class="contexto">Um grupo de estudantes do 7º ano decidiu investigar a biodiversidade local usando um quadrado de amostragem de 1m x 1m, como mostra o esquema, para registrar as espécies de plantas e fungos encontradas no pátio da escola.</p>
+
+    <p class="pergunta">Descreva os <b>passos</b> que esse grupo deveria seguir para realizar essa investigação de forma científica e explique <b>por que</b> registrar a diversidade de espécies encontradas é importante para compreender o ecossistema local.</p>
+
+    <textarea class="resposta-dissertativa" data-question="6" maxlength="1200" placeholder="Descreva o passo a passo da investigação e explique a importância do registro da biodiversidade local..."></textarea>
+    <div class="contador-caracteres"><span data-contador="6">0</span>/1200 caracteres</div>
+  </section>
+
+  <!-- ================= QUESTÃO 7 — AULA 7 — AMAZÔNIA ================= -->
+  <section class="questao" id="questao-7" data-qid="7" data-tipo="mc">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 7 · Amazônia</span></div>
+      <span class="tipo-tag">Múltipla escolha</span>
+    </div>
+    <h3 class="tema">7. A Amazônia e o clima do planeta</h3>
+
+    <div class="midia">
+      <figure class="midia-img">
+        <img class="bio-img" data-label="Floresta Amazônica" alt="Vista aérea da Floresta Amazônica"
+             src="https://commons.wikimedia.org/wiki/Special:FilePath/Floresta%20amazonica.JPG">
+        <figcaption class="legenda">Floresta Amazônica — Wikimedia Commons.</figcaption>
+      </figure>
+      <div class="midia-dado">
+        <h4>Comparativo entre biomas</h4>
+        <table class="tabela-dados">
+          <thead><tr><th>Bioma</th><th>Pluviosidade</th><th>Vegetação</th></tr></thead>
+          <tbody>
+            <tr><td>Amazônia</td><td>Muito alta</td><td>Floresta densa e úmida</td></tr>
+            <tr><td>Cerrado</td><td>Sazonal</td><td>Savana com árvores baixas</td></tr>
+            <tr><td>Mata Atlântica</td><td>Alta</td><td>Floresta tropical fragmentada</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="contexto">A Floresta Amazônica é o maior bioma brasileiro e abriga a maior biodiversidade do planeta. Além de sua riqueza biológica, a floresta desempenha um papel fundamental no equilíbrio climático regional e global, participando ativamente do ciclo da água por meio da liberação de vapor pelas plantas.</p>
+
+    <p class="pergunta">De acordo com o texto, a tabela e a imagem, qual é a principal contribuição da Floresta Amazônica para o clima do planeta?</p>
+
+    <div class="alternativas" data-question="7">
+      <button class="alt-btn" data-valor="A"><span class="letra">A</span><span>Impede totalmente a ocorrência de chuvas em toda a região Norte do país.</span></button>
+      <button class="alt-btn" data-valor="B"><span class="letra">B</span><span>Ajuda a regular o ciclo da água e o equilíbrio climático global por meio da evapotranspiração das plantas.</span></button>
+      <button class="alt-btn" data-valor="C"><span class="letra">C</span><span>Reduz a umidade do ar em escala global durante todo o ano.</span></button>
+      <button class="alt-btn" data-valor="D"><span class="letra">D</span><span>Aumenta a frequência de geadas em todo o território brasileiro.</span></button>
+    </div>
+  </section>
+
+  <!-- ================= QUESTÃO 8 — AULA 8 — DESAFIOS AMAZÔNIA ================= -->
+  <section class="questao" id="questao-8" data-qid="8" data-tipo="mc">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 8 · Desafios na conservação da Amazônia</span></div>
+      <span class="tipo-tag">Múltipla escolha</span>
+    </div>
+    <h3 class="tema">8. Desmatamento e conservação na Amazônia</h3>
+
+    <div class="midia">
+      <figure class="midia-img">
+        <img class="bio-img" data-label="Amazônia vista do alto" alt="Vista aérea de área da Floresta Amazônica"
+             src="https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20of%20the%20Amazon%20Rainforest.jpg">
+        <figcaption class="legenda">Vista aérea da Floresta Amazônica — Wikimedia Commons.</figcaption>
+      </figure>
+      <div class="midia-dado">
+        <h4>Gráfico ilustrativo · Área desmatada por período de monitoramento</h4>
+        <div class="grafico-barras" style="height:110px;">
+          <div class="barra-item"><div class="barra" style="height:40%;"><span class="valor">Período 1</span></div><span class="barra-label">Menor fiscalização</span></div>
+          <div class="barra-item"><div class="barra" style="height:75%;"><span class="valor">Período 2</span></div><span class="barra-label">Baixo monitoramento</span></div>
+          <div class="barra-item"><div class="barra verde" style="height:30%;"><span class="valor">Período 3</span></div><span class="barra-label">Maior fiscalização</span></div>
+        </div>
+        <p class="grafico-nota">Tendência ilustrativa: períodos com maior fiscalização e programas de monitoramento ambiental tendem a apresentar menores índices de desmatamento.</p>
+      </div>
+    </div>
+
+    <p class="contexto">Órgãos ambientais monitoram constantemente a Floresta Amazônica para identificar áreas de desmatamento, muitas vezes ligado à expansão da pecuária, da agricultura e à extração ilegal de madeira. Como mostra o gráfico, o reforço da fiscalização e de programas de preservação tende a reduzir os índices de desmatamento.</p>
+
+    <p class="pergunta">Considerando o gráfico, qual das alternativas apresenta uma medida eficaz de conservação para reduzir os impactos ambientais na Amazônia?</p>
+
+    <div class="alternativas" data-question="8">
+      <button class="alt-btn" data-valor="A"><span class="letra">A</span><span>Expandir de forma irrestrita a pecuária extensiva dentro da floresta.</span></button>
+      <button class="alt-btn" data-valor="B"><span class="letra">B</span><span>Aumentar a queima não controlada da vegetação nativa para abertura de novas áreas.</span></button>
+      <button class="alt-btn" data-valor="C"><span class="letra">C</span><span>Ampliar a fiscalização ambiental e criar programas de preservação e monitoramento das áreas florestais.</span></button>
+      <button class="alt-btn" data-valor="D"><span class="letra">D</span><span>Reduzir o número de unidades de conservação já existentes na região.</span></button>
+    </div>
+  </section>
+
+  <!-- ================= QUESTÃO 9 — AULA 9 — PANTANAL ================= -->
+  <section class="questao" id="questao-9" data-qid="9" data-tipo="mc">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 9 · Pantanal</span></div>
+      <span class="tipo-tag">Múltipla escolha</span>
+    </div>
+    <h3 class="tema">9. O Pantanal e a vulnerabilidade às queimadas</h3>
+
+    <div class="midia">
+      <figure class="midia-img">
+        <img class="bio-img" data-label="Fauna do Pantanal" alt="Capivara em ambiente típico do Pantanal"
+             src="https://commons.wikimedia.org/wiki/Special:FilePath/Capivara%20Pantanal.jpg">
+        <figcaption class="legenda">Capivara no Pantanal — Wikimedia Commons.</figcaption>
+      </figure>
+      <div class="midia-dado">
+        <h4>Trecho de reportagem (texto adaptado)</h4>
+        <p style="font-size:13px; margin:0;">Reportagens sobre o Pantanal têm destacado que, em anos de seca mais intensa, a região registra grande número de focos de incêndio. Segundo especialistas, o acúmulo de vegetação seca sobre o solo alagável, quando não é coberto pela água das cheias, favorece a propagação rápida do fogo entre as áreas de campo e mata.</p>
+      </div>
+    </div>
+
+    <p class="contexto">O Pantanal é reconhecido como a maior planície alagável contínua do planeta e abriga altíssima biodiversidade de fauna, como capivaras, jacarés e onças-pintadas. Sua dinâmica natural alterna entre períodos de cheia e de seca ao longo do ano.</p>
+
+    <p class="pergunta">Com base na imagem e no trecho de reportagem, qual característica torna o Pantanal especialmente vulnerável às queimadas em períodos de seca prolongada?</p>
+
+    <div class="alternativas" data-question="9">
+      <button class="alt-btn" data-valor="A"><span class="letra">A</span><span>A localização do bioma exclusivamente em áreas montanhosas elevadas.</span></button>
+      <button class="alt-btn" data-valor="B"><span class="letra">B</span><span>A ausência completa de vegetação em toda a extensão do bioma.</span></button>
+      <button class="alt-btn" data-valor="C"><span class="letra">C</span><span>O clima permanentemente úmido e frio ao longo de todo o ano.</span></button>
+      <button class="alt-btn" data-valor="D"><span class="letra">D</span><span>O grande acúmulo de vegetação seca sobre o solo, que favorece a propagação do fogo quando não há cheia.</span></button>
+    </div>
+  </section>
+
+  <!-- ================= QUESTÃO 10 — AULA 10 — PAMPA (DISSERTATIVA) ================= -->
+  <section class="questao" id="questao-10" data-qid="10" data-tipo="dissertativa">
+    <div class="questao-cabeca">
+      <div><span class="aula-tag">Aula 10 · Pampa</span></div>
+      <span class="tipo-tag">Dissertativa</span>
+    </div>
+    <h3 class="tema">10. Características e importância ecológica do Pampa</h3>
+
+    <div class="midia">
+      <figure class="midia-img">
+        <img class="bio-img" data-label="Bioma Pampa" alt="Campos nativos do bioma Pampa ao amanhecer, no Rio Grande do Sul"
+             src="https://commons.wikimedia.org/wiki/Special:FilePath/Amanhecer%20nos%20Pampas%20do%20Sul.jpg">
+        <figcaption class="legenda">Campos nativos do Pampa, Rio Grande do Sul — Wikimedia Commons.</figcaption>
+      </figure>
+      <div class="midia-dado">
+        <h4>Comparativo entre biomas</h4>
+        <table class="tabela-dados">
+          <thead><tr><th>Bioma</th><th>Localização</th><th>Vegetação predominante</th></tr></thead>
+          <tbody>
+            <tr><td>Pampa</td><td>Extremo sul (RS)</td><td>Campos nativos, gramíneas</td></tr>
+            <tr><td>Caatinga</td><td>Nordeste</td><td>Vegetação arbustiva, adaptada à seca</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="contexto">O Pampa é o único bioma brasileiro restrito a um único estado, o Rio Grande do Sul, onde ocupa mais da metade do território estadual. É marcado pelo predomínio de campos nativos com gramíneas e pela forte relação histórica e cultural com a pecuária e a tradição gaúcha.</p>
+
+    <p class="pergunta">Com base na tabela comparativa, na imagem e no texto, descreva <b>DUAS características</b> do bioma Pampa (clima, vegetação ou relevo) e explique sua <b>importância ecológica e cultural</b> para o Rio Grande do Sul. Em seguida, sugira <b>uma atitude sustentável</b> que ajude a preservar esse bioma.</p>
+
+    <textarea class="resposta-dissertativa" data-question="10" maxlength="1200" placeholder="Descreva as duas características, explique a importância ecológica/cultural e sugira uma atitude sustentável..."></textarea>
+    <div class="contador-caracteres"><span data-contador="10">0</span>/1200 caracteres</div>
+  </section>
+
+  <!-- ================= ENVIO ================= -->
+  <div class="envio-box">
+    <h3 style="margin-top:0;">Enviar respostas</h3>
+    <p>Confira se você preencheu turma, nome e todas as 10 questões antes de enviar. Após o envio, suas respostas serão registradas automaticamente na planilha da atividade.</p>
+    <button id="btnEnviar">Enviar atividade</button>
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+
+</main>
+
+<footer class="rodape">
+  E.E. Profª Wanda Mascagni de Sá · Ciências · 7º Ano · 3º Bimestre
+</footer>
+
+<script>
+/* ============================================================
+   1) URL do Google Apps Script (Web App) — SUBSTITUA após publicar
+   ============================================================ */
+const GAS_URL = "COLE_AQUI_A_URL_DO_SEU_APP_DA_WEB_DO_APPS_SCRIPT";
+
+/* ============================================================
+   2) Lista de alunos por turma (nome + RA)
+   ============================================================ */
+const TURMAS = {
+  "7°Ano A": [
+    {"nome":"ÁGATHA CAMPOS DE SOUSA","ra":"123687705-6"},
+    {"nome":"AGATHA DE CAMARGO","ra":"115622979-0"},
+    {"nome":"ALBERT BARROS CARDOSO","ra":"114506468-1"},
+    {"nome":"ALEXIA LOHANA COSTA DE OLIVEIRA","ra":"115864647-1"},
+    {"nome":"ANA CAROLINA GONÇALVES NASCIMENTO DE LIMA","ra":"115865010-3"},
+    {"nome":"ANA LUIZA DA SILVA OLIVEIRA","ra":"121028045-0"},
+    {"nome":"ARIANE DIAS SOARES","ra":"115066892-1"},
+    {"nome":"BRYAN OLLIVER TEIXEIRA RODRIGUES DE SALLES","ra":"116500942-0"},
+    {"nome":"CRYSTHOPHER PIERRE CAVALCANTE RUBIRA","ra":"121631871-2"},
+    {"nome":"EMANUELLA RIBEIRO MAFRA","ra":"115069279-0"},
+    {"nome":"FHELIPE OLIVEIRA CAETANO PEREIRA","ra":"121486283-4"},
+    {"nome":"GABRIEL CHAVES RAMOS","ra":"112603375-3"},
+    {"nome":"HENRIQUE VIANA LEITE","ra":"116437860-0"},
+    {"nome":"ISABELLA DE SOUZA SILVA","ra":"114595973-8"},
+    {"nome":"ISABELLY SOPHIA VIEIRA LIMA","ra":"121695507-4"},
+    {"nome":"ISABELLY VITORIA DA SILVA MOREIRA","ra":"114612929-4"},
+    {"nome":"JÁDINA COELHO ABADE","ra":"115882329-0"},
+    {"nome":"JEAN PAULO MARTINS DA SILVA","ra":"115882392-7"},
+    {"nome":"KETTELLEN VITORIA DA SILVA CARDOSO","ra":"115883763-X"},
+    {"nome":"LUAN CAIO LOPES DE LIMA","ra":"116528464-9"},
+    {"nome":"MAYSA CORREIA DE OLIVEIRA","ra":"121491458-5"},
+    {"nome":"MAYSA FERNANDA DE OLIVEIRA CARVALHO","ra":"116517507-1"},
+    {"nome":"OTAVIO DO NASCIMENTO CONCEIÇÃO","ra":"122012071-6"},
+    {"nome":"PEDRO BRANDÃO SANTOS","ra":"123923601-3"},
+    {"nome":"RAFAELLA VICTORIA ABREU DOS ANJOS","ra":"121483537-5"},
+    {"nome":"RAPHAEL CORRÊA AZEVEDO","ra":"115889689-X"},
+    {"nome":"RYAN FREITAS FERREIRA","ra":"116520668-7"},
+    {"nome":"SAYMON GABRIEL DE JESUS BARBOSA","ra":"121976177-1"},
+    {"nome":"YASMIM MANGILI SILVA","ra":"114163728-5"},
+    {"nome":"YASMIM NOVAES SOARES","ra":"116522578-5"},
+    {"nome":"YASMIN CRISTINA PEREIRA CORREIA","ra":"116522822-1"}
+  ],
+  "7°Ano B": [
+    {"nome":"ABRAÃO JUNIOR SOUSA BATISTA","ra":"116498223-0"},
+    {"nome":"ALEX ROBERTO BARBOZA DE CARVALHO","ra":"116498448-2"},
+    {"nome":"AMANDA MARTINS SANTOS DA SILVA","ra":"116498886-4"},
+    {"nome":"ANA CECILIA LEÃO DE ALMEIDA","ra":"115865028-0"},
+    {"nome":"BEATRIZ NASCIMENTO ALVES","ra":"116500353-3"},
+    {"nome":"BRUNO HENRIQUE SERAFIM","ra":"115069759-3"},
+    {"nome":"DANIEL ROCHA COSTA","ra":"116501654-0"},
+    {"nome":"ERICK ROBERTO ESTEVAM OLIVEIRA","ra":"116503338-0"},
+    {"nome":"FELIPE WENDEL GONÇALVES DOS SANTOS","ra":"115069286-8"},
+    {"nome":"FERNANDA MARCOS SOARES","ra":"115070045-2"},
+    {"nome":"GUILHERME CAMARGO MOTA","ra":"116504776-7"},
+    {"nome":"GUILHERME DE BRITO ROCHA","ra":"116504787-1"},
+    {"nome":"HEDERSON FERNANDO FELIX DE SOUZA","ra":"114155344-2"},
+    {"nome":"JENIFER MEDEIROS ALVES","ra":"121487942-1"},
+    {"nome":"JHULIA FERNANDA MENDES","ra":"115882488-9"},
+    {"nome":"KENNETH BARTHOLOMEW KOSH IV","ra":"121490017-3"},
+    {"nome":"LARYSSA XAVIER DE SOUZA","ra":"116527633-1"},
+    {"nome":"LOHANA GABRIELY GONÇALVES DA SILVA","ra":"121489264-4"},
+    {"nome":"MATHEUS LOPES FERREIRA","ra":"121510406-6"},
+    {"nome":"MAYRA CORREIA DE OLIVEIRA","ra":"121489178-0"},
+    {"nome":"MIGUEL DOMINGOS CALIXTO","ra":"120583574-X"},
+    {"nome":"MILENA KAROLINE ALVES COSTA","ra":"122967935-2"},
+    {"nome":"SOPHIA EVANGELISTA COBRA DE CARVALHO","ra":"116536550-9"},
+    {"nome":"VITOR HUGO GUERREIRO RODRIGUES","ra":"115891495-7"}
+  ]
+};
+
+/* ============================================================
+   3) Estado das respostas
+   ============================================================ */
+const respostas = {}; // { "1": "A", "3": "texto...", ... }
+const TOTAL_QUESTOES = 10;
+
+const selTurma = document.getElementById('selTurma');
+const selNome  = document.getElementById('selNome');
+const raAluno  = document.getElementById('raAluno');
+const alunoResumo = document.getElementById('alunoResumo');
+
+selTurma.addEventListener('change', () => {
+  const turma = selTurma.value;
+  selNome.innerHTML = '';
+  raAluno.textContent = '—';
+  alunoResumo.textContent = '';
+
+  if (!turma) {
+    selNome.disabled = true;
+    selNome.innerHTML = '<option value="">Selecione a turma primeiro</option>';
+    return;
+  }
+  selNome.disabled = false;
+  const alunos = [...TURMAS[turma]].sort((a,b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+  selNome.innerHTML = '<option value="">Selecione o(a) aluno(a)</option>' +
+    alunos.map(a => `<option value="${a.nome}" data-ra="${a.ra}">${a.nome}</option>`).join('');
+});
+
+selNome.addEventListener('change', () => {
+  const opt = selNome.options[selNome.selectedIndex];
+  const ra = opt && opt.dataset ? opt.dataset.ra : null;
+  raAluno.textContent = ra || '—';
+  alunoResumo.textContent = opt && opt.value ? `Turma: ${selTurma.value}` : '';
+});
+
+/* ============================================================
+   4) Alternativas de múltipla escolha — clique = "afunda" e fica verde escuro
+   ============================================================ */
+document.querySelectorAll('.alternativas').forEach(grupo => {
+  const qid = grupo.dataset.question;
+  grupo.querySelectorAll('.alt-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      grupo.querySelectorAll('.alt-btn').forEach(b => b.classList.remove('selecionada'));
+      btn.classList.add('selecionada');
+      respostas[qid] = btn.dataset.valor;
+      atualizarProgresso();
+    });
+  });
+});
+
+/* ============================================================
+   5) Dissertativas
+   ============================================================ */
+document.querySelectorAll('.resposta-dissertativa').forEach(area => {
+  const qid = area.dataset.question;
+  const contador = document.querySelector(`[data-contador="${qid}"]`);
+  area.addEventListener('input', () => {
+    respostas[qid] = area.value.trim();
+    if (contador) contador.textContent = area.value.length;
+    atualizarProgresso();
+  });
+});
+
+/* ============================================================
+   6) Barra de progresso
+   ============================================================ */
+function atualizarProgresso(){
+  const respondidas = Object.keys(respostas).filter(k => respostas[k] && respostas[k].length > 0).length;
+  document.getElementById('progressoTexto').textContent = `${respondidas} / ${TOTAL_QUESTOES} respondidas`;
+  document.getElementById('progressoFill').style.width = `${(respondidas/TOTAL_QUESTOES)*100}%`;
 }
 
-function validarRespostas() {
-  const turma = document.getElementById('turma').value;
-  const aluno = document.getElementById('aluno').value;
-
-    if (!turma || !aluno) {
-        mostrarMensagem('Por favor, selecione sua turma e nome!', 'error');
-        return false;
-    }
-
-    return true;
+/* ============================================================
+   7) Fallback de imagens (caso algum link externo não carregue)
+   ============================================================ */
+function placeholderSVG(texto){
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='400' height='240'>
+    <rect width='100%' height='100%' fill='#e6efe4'/>
+    <text x='50%' y='50%' font-family='sans-serif' font-size='16' fill='#1b4332' text-anchor='middle' dominant-baseline='middle'>${texto}</text>
+  </svg>`;
+  return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
 }
+document.querySelectorAll('.bio-img').forEach(img => {
+  img.addEventListener('error', function handler(){
+    img.removeEventListener('error', handler);
+    img.src = placeholderSVG(img.dataset.label || 'Imagem indisponível');
+  });
+});
 
-function enviarRespostas() {
-  if (!validarRespostas()) return;
+/* ============================================================
+   8) Envio para o Google Apps Script
+   ============================================================ */
+document.getElementById('btnEnviar').addEventListener('click', async () => {
+  const statusMsg = document.getElementById('statusMsg');
+  const btn = document.getElementById('btnEnviar');
+  statusMsg.className = 'status-msg';
+  statusMsg.textContent = '';
 
-    document.getElementById('loading').classList.add('show');
-    const respostas = coletarRespostas();
+  const turma = selTurma.value;
+  const nome  = selNome.value;
+  const ra    = raAluno.textContent;
 
-    // Simular envio (será integrado com Google Sheets)
-    setTimeout(() => {
-       enviarParaGoogleSheets(respostas);
-    }, 1000);
-}
+  if (!turma || !nome) {
+    statusMsg.classList.add('erro');
+    statusMsg.textContent = 'Selecione a turma e o nome do aluno(a) antes de enviar.';
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
+  }
+  const faltando = [];
+  for (let i=1; i<=TOTAL_QUESTOES; i++){
+    if (!respostas[i] || respostas[i].length === 0) faltando.push(i);
+  }
+  if (faltando.length > 0) {
+    statusMsg.classList.add('erro');
+    statusMsg.textContent = `Responda todas as questões antes de enviar. Faltam: ${faltando.join(', ')}.`;
+    return;
+  }
 
-function coletarRespostas() {
-  const turma = document.getElementById('turma').value;
-  const alunoData = JSON.parse(document.getElementById('aluno').value);
-  const respostas = {
-     turma: turma,
-     nome: alunoData['Nome do Aluno'],
-     ra: alunoData['RA'],
-     timestamp: new Date().toLocaleString('pt-BR'),
-     respostas: {}
+  const payload = {
+    timestamp: new Date().toISOString(),
+    turma: turma,
+    nome: nome,
+    ra: ra,
+    q1: respostas[1], q2: respostas[2], q3: respostas[3], q4: respostas[4], q5: respostas[5],
+    q6: respostas[6], q7: respostas[7], q8: respostas[8], q9: respostas[9], q10: respostas[10]
   };
 
-    questoes.forEach(q => {
-      if (q.tipo === 'multipla') {
-          const radio = document.querySelector(`input[name="q${q.numero}"]:checked`);
-          if (radio) {
-              respostas.respostas[`Q${q.numero}`] = radio.value;
-          }
-      } else {
-          const textarea = document.getElementById(`q${q.numero}`);
-          if (textarea.value.trim()) {
-                  respostas.respostas[`Q${q.numero}`] = textarea.value.trim();
-              }
-          }
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  try {
+    if (!GAS_URL || GAS_URL.startsWith('COLE_AQUI')) {
+      throw new Error('CONFIG');
+    }
+    await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
     });
+    statusMsg.classList.add('ok');
+    statusMsg.textContent = 'Atividade enviada com sucesso! Você já pode fechar esta página.';
+    btn.textContent = 'Enviado ✓';
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Enviar atividade';
+    statusMsg.classList.add('erro');
+    if (err.message === 'CONFIG') {
+      statusMsg.textContent = 'A professora ainda precisa configurar o link do Google Sheets nesta atividade (GAS_URL).';
+    } else {
+      statusMsg.textContent = 'Não foi possível enviar agora. Verifique sua internet e tente novamente.';
+    }
+  }
+});
+</script>
 
-    return respostas;
-}
-
-function enviarParaGoogleSheets(respostas) {
-  // Esta função será chamada pelo Google Apps Script
-  google.script.run.withSuccessHandler(function(result) {
-     document.getElementById('loading').classList.remove('show');
-     if (result.success) {
-         mostrarMensagem('Respostas enviadas com sucesso!', 'success');
-         setTimeout(() => {
-            limparFormulario();
-         }, 2000);
-     } else {
-         mostrarMensagem('Erro ao enviar respostas: ' + result.message, 'error');
-     }
-  }).enviarRespostasParaSheet(JSON.stringify(respostas));
-}
-
-function mostrarMensagem(texto, tipo) {
-  const message = document.getElementById('message');
-  message.textContent = texto;
-  message.className = 'message ' + tipo;
-  setTimeout(() => {
-     message.style.display = 'none';
-  }, 4000);
-}
-
-function limparFormulario() {
-  document.getElementById('turma').value = '';
-  document.getElementById('aluno').value = '';
-  document.getElementById('aluno').disabled = true;
-  document.getElementById('studentInfo').style.display = 'none';
-
-    document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        radio.checked = false;
-        radio.parentElement.classList.remove('selected');
-    });
-
-    document.querySelectorAll('textarea').forEach(textarea => {
-        textarea.value = '';
-    });
-
-    document.getElementById('message').style.display = 'none';
-     }
-  </script>
 </body>
 </html>
