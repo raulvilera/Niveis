@@ -26,6 +26,10 @@
     --sombra-alto: 7px 7px 14px rgba(27,67,50,0.16), -7px -7px 14px rgba(255,255,255,0.85);
     --sombra-alto-hover: 9px 9px 16px rgba(27,67,50,0.20), -9px -9px 16px rgba(255,255,255,0.9);
     --sombra-fundo: inset 5px 5px 10px rgba(0,0,0,0.32), inset -4px -4px 8px rgba(255,255,255,0.06);
+    --azul-claro:#3f7fb0;
+    --azul-medio:#1e5680;
+    --azul-escuro:#0a2d47;
+    --azul-texto-suave:#c7dcec;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -139,13 +143,14 @@
 
   /* ===== QUESTÕES ===== */
   .questao{
-    background:var(--areia-card);
+    background: linear-gradient(150deg, var(--azul-claro) 0%, var(--azul-medio) 48%, var(--azul-escuro) 100%);
     border-radius:20px;
-    border:1px solid var(--linha);
+    border:1px solid var(--azul-escuro);
     padding:26px 24px 28px;
     margin-bottom:26px;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.02), 0 14px 30px -20px rgba(27,67,50,0.35);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.02), 0 14px 30px -18px rgba(10,45,71,0.55);
     scroll-margin-top:70px;
+    color:#eef4fa;
   }
   .questao-cabeca{
     display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
@@ -154,8 +159,8 @@
   .aula-tag{
     display:inline-block;
     font-size:11.5px; font-weight:700; letter-spacing:.4px;
-    color:var(--mata-700);
-    background:#e6efe4;
+    color:var(--azul-escuro);
+    background:#eaf3fb;
     border:1px solid #cfe0cb;
     padding:4px 10px;
     border-radius:100px;
@@ -174,10 +179,10 @@
   .questao h3.tema{
     margin:0 0 12px;
     font-size:21px;
-    color:var(--mata-900);
+    color:#ffffff;
   }
-  .contexto{font-size:15px; color:var(--texto); margin-bottom:14px;}
-  .contexto .fonte{display:block; font-size:12px; color:var(--texto-suave); margin-top:4px; font-style:italic;}
+  .contexto{font-size:15px; color:#e7f1fa; margin-bottom:14px;}
+  .contexto .fonte{display:block; font-size:12px; color:var(--azul-texto-suave); margin-top:4px; font-style:italic;}
 
   .midia{
     display:flex; gap:16px; flex-wrap:wrap;
@@ -192,8 +197,49 @@
     box-shadow: var(--sombra-alto);
     background:#e9e4d4;
   }
-  .midia-img img{width:100%; height:190px; object-fit:cover; display:block;}
+  .midia-img img{width:100%; height:190px; object-fit:cover; display:block; cursor:zoom-in; transition:filter .15s ease;}
+  .midia-img img:hover{filter:brightness(1.04);}
   .midia-img .legenda{font-size:11.5px; color:var(--texto-suave); padding:8px 10px; background:#fffdf8;}
+
+  /* ===== LIGHTBOX (expandir imagens) ===== */
+  .lightbox-overlay{
+    position:fixed; inset:0; z-index:100;
+    background:rgba(10,20,15,0.86);
+    display:none;
+    align-items:center; justify-content:center;
+    padding:36px 18px;
+    cursor:zoom-out;
+    animation: lb-fade .15s ease;
+  }
+  .lightbox-overlay.aberto{display:flex;}
+  @keyframes lb-fade{ from{opacity:0;} to{opacity:1;} }
+  .lightbox-conteudo{
+    max-width:min(92vw, 900px);
+    max-height:90vh;
+    display:flex; flex-direction:column; align-items:center;
+    cursor:default;
+  }
+  .lightbox-conteudo img{
+    max-width:100%; max-height:76vh;
+    border-radius:14px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+    object-fit:contain;
+    background:#111;
+  }
+  .lightbox-legenda{color:#f4f7ef; font-size:13.5px; text-align:center; margin-top:14px; max-width:640px;}
+  .lightbox-fechar{
+    position:absolute; top:18px; right:22px;
+    width:40px; height:40px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,0.14);
+    color:#fff;
+    font-size:20px; font-weight:700;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: background .12s ease;
+  }
+  .lightbox-fechar:hover{ background:rgba(255,255,255,0.26); }
 
   .midia-dado{
     flex:1 1 300px;
@@ -225,7 +271,7 @@
   .barra-label{margin-top:6px; font-size:11px; text-align:center; color:var(--texto-suave); line-height:1.2;}
   .grafico-nota{font-size:10.5px; color:var(--texto-suave); margin-top:8px; font-style:italic;}
 
-  .pergunta{font-weight:600; font-size:15.5px; margin:6px 0 16px; color:var(--mata-900);}
+  .pergunta{font-weight:600; font-size:15.5px; margin:6px 0 16px; color:#ffffff;}
 
   /* ===== ALTERNATIVAS "ALTO RELEVO" ===== */
   .alternativas{display:grid; gap:12px;}
@@ -283,7 +329,7 @@
     resize:vertical;
   }
   textarea.resposta-dissertativa:focus{outline:2px solid var(--mata-600); outline-offset:2px;}
-  .contador-caracteres{font-size:11.5px; color:var(--texto-suave); text-align:right; margin-top:6px;}
+  .contador-caracteres{font-size:11.5px; color:var(--azul-texto-suave); text-align:right; margin-top:6px;}
 
   /* ===== ENVIO ===== */
   .envio-box{
@@ -345,8 +391,20 @@
           <option value="">Selecione a turma primeiro</option>
         </select>
       </div>
+      <div class="campo">
+        <label for="numChamada">Nº de chamada</label>
+        <input type="text" id="numChamada" readonly value="—">
+      </div>
+      <div class="campo">
+        <label for="raAlunoInput">RA</label>
+        <input type="text" id="raAlunoInput" readonly value="—">
+      </div>
+      <div class="campo full">
+        <label for="emailAluno">E-mail institucional</label>
+        <input type="text" id="emailAluno" readonly value="—">
+      </div>
       <div class="ra-box">
-        RA: <strong id="raAluno">—</strong>
+        Aluno(a) selecionado(a): <strong id="raAluno">—</strong>
         <span id="alunoResumo" style="margin-left:auto;"></span>
       </div>
     </div>
@@ -743,76 +801,25 @@
   E.E. Profª Wanda Mascagni de Sá · Ciências · 7º Ano · 3º Bimestre
 </footer>
 
+<!-- ================= LIGHTBOX (imagem expandida) ================= -->
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-fechar" id="lightboxFechar" aria-label="Fechar imagem ampliada">&times;</button>
+  <div class="lightbox-conteudo" id="lightboxConteudo">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-legenda" id="lightboxLegenda"></p>
+  </div>
+</div>
+
 <script>
 /* ============================================================
    1) URL do Google Apps Script (Web App) — SUBSTITUA após publicar
    ============================================================ */
-const GAS_URL = "https://script.google.com/macros/s/AKfycbxKA_nXMnO1zXG14xWsonwsLzj4rRmmm0awPUmbgaN9rpBQBnFJolXpwUqDctKhmejP/exec";
+const GAS_URL = "COLE_AQUI_A_URL_DO_SEU_APP_DA_WEB_DO_APPS_SCRIPT";
 
 /* ============================================================
    2) Lista de alunos por turma (nome + RA)
    ============================================================ */
-const TURMAS = {
-  "7°Ano A": [
-    {"nome":"ÁGATHA CAMPOS DE SOUSA","ra":"123687705-6"},
-    {"nome":"AGATHA DE CAMARGO","ra":"115622979-0"},
-    {"nome":"ALBERT BARROS CARDOSO","ra":"114506468-1"},
-    {"nome":"ALEXIA LOHANA COSTA DE OLIVEIRA","ra":"115864647-1"},
-    {"nome":"ANA CAROLINA GONÇALVES NASCIMENTO DE LIMA","ra":"115865010-3"},
-    {"nome":"ANA LUIZA DA SILVA OLIVEIRA","ra":"121028045-0"},
-    {"nome":"ARIANE DIAS SOARES","ra":"115066892-1"},
-    {"nome":"BRYAN OLLIVER TEIXEIRA RODRIGUES DE SALLES","ra":"116500942-0"},
-    {"nome":"CRYSTHOPHER PIERRE CAVALCANTE RUBIRA","ra":"121631871-2"},
-    {"nome":"EMANUELLA RIBEIRO MAFRA","ra":"115069279-0"},
-    {"nome":"FHELIPE OLIVEIRA CAETANO PEREIRA","ra":"121486283-4"},
-    {"nome":"GABRIEL CHAVES RAMOS","ra":"112603375-3"},
-    {"nome":"HENRIQUE VIANA LEITE","ra":"116437860-0"},
-    {"nome":"ISABELLA DE SOUZA SILVA","ra":"114595973-8"},
-    {"nome":"ISABELLY SOPHIA VIEIRA LIMA","ra":"121695507-4"},
-    {"nome":"ISABELLY VITORIA DA SILVA MOREIRA","ra":"114612929-4"},
-    {"nome":"JÁDINA COELHO ABADE","ra":"115882329-0"},
-    {"nome":"JEAN PAULO MARTINS DA SILVA","ra":"115882392-7"},
-    {"nome":"KETTELLEN VITORIA DA SILVA CARDOSO","ra":"115883763-X"},
-    {"nome":"LUAN CAIO LOPES DE LIMA","ra":"116528464-9"},
-    {"nome":"MAYSA CORREIA DE OLIVEIRA","ra":"121491458-5"},
-    {"nome":"MAYSA FERNANDA DE OLIVEIRA CARVALHO","ra":"116517507-1"},
-    {"nome":"OTAVIO DO NASCIMENTO CONCEIÇÃO","ra":"122012071-6"},
-    {"nome":"PEDRO BRANDÃO SANTOS","ra":"123923601-3"},
-    {"nome":"RAFAELLA VICTORIA ABREU DOS ANJOS","ra":"121483537-5"},
-    {"nome":"RAPHAEL CORRÊA AZEVEDO","ra":"115889689-X"},
-    {"nome":"RYAN FREITAS FERREIRA","ra":"116520668-7"},
-    {"nome":"SAYMON GABRIEL DE JESUS BARBOSA","ra":"121976177-1"},
-    {"nome":"YASMIM MANGILI SILVA","ra":"114163728-5"},
-    {"nome":"YASMIM NOVAES SOARES","ra":"116522578-5"},
-    {"nome":"YASMIN CRISTINA PEREIRA CORREIA","ra":"116522822-1"}
-  ],
-  "7°Ano B": [
-    {"nome":"ABRAÃO JUNIOR SOUSA BATISTA","ra":"116498223-0"},
-    {"nome":"ALEX ROBERTO BARBOZA DE CARVALHO","ra":"116498448-2"},
-    {"nome":"AMANDA MARTINS SANTOS DA SILVA","ra":"116498886-4"},
-    {"nome":"ANA CECILIA LEÃO DE ALMEIDA","ra":"115865028-0"},
-    {"nome":"BEATRIZ NASCIMENTO ALVES","ra":"116500353-3"},
-    {"nome":"BRUNO HENRIQUE SERAFIM","ra":"115069759-3"},
-    {"nome":"DANIEL ROCHA COSTA","ra":"116501654-0"},
-    {"nome":"ERICK ROBERTO ESTEVAM OLIVEIRA","ra":"116503338-0"},
-    {"nome":"FELIPE WENDEL GONÇALVES DOS SANTOS","ra":"115069286-8"},
-    {"nome":"FERNANDA MARCOS SOARES","ra":"115070045-2"},
-    {"nome":"GUILHERME CAMARGO MOTA","ra":"116504776-7"},
-    {"nome":"GUILHERME DE BRITO ROCHA","ra":"116504787-1"},
-    {"nome":"HEDERSON FERNANDO FELIX DE SOUZA","ra":"114155344-2"},
-    {"nome":"JENIFER MEDEIROS ALVES","ra":"121487942-1"},
-    {"nome":"JHULIA FERNANDA MENDES","ra":"115882488-9"},
-    {"nome":"KENNETH BARTHOLOMEW KOSH IV","ra":"121490017-3"},
-    {"nome":"LARYSSA XAVIER DE SOUZA","ra":"116527633-1"},
-    {"nome":"LOHANA GABRIELY GONÇALVES DA SILVA","ra":"121489264-4"},
-    {"nome":"MATHEUS LOPES FERREIRA","ra":"121510406-6"},
-    {"nome":"MAYRA CORREIA DE OLIVEIRA","ra":"121489178-0"},
-    {"nome":"MIGUEL DOMINGOS CALIXTO","ra":"120583574-X"},
-    {"nome":"MILENA KAROLINE ALVES COSTA","ra":"122967935-2"},
-    {"nome":"SOPHIA EVANGELISTA COBRA DE CARVALHO","ra":"116536550-9"},
-    {"nome":"VITOR HUGO GUERREIRO RODRIGUES","ra":"115891495-7"}
-  ]
-};
+const TURMAS = {"7°Ano A": [{"chamada": 1, "nome": "ÁGATHA CAMPOS DE SOUSA", "ra": "123687705-6", "email": "00001236877056SP@al.educacao.sp.gov.br"}, {"chamada": 2, "nome": "ALBERT BARROS CARDOSO", "ra": "114506468-1", "email": "00001145064681SP@al.educacao.sp.gov.br"}, {"chamada": 3, "nome": "ALEXIA LOHANA COSTA DE OLIVEIRA", "ra": "115864647-1", "email": "00001158646471SP@al.educacao.sp.gov.br"}, {"chamada": 4, "nome": "ANA CAROLINA GONÇALVES NASCIMENTO DE LIMA", "ra": "115865010-3", "email": "00001158650103SP@al.educacao.sp.gov.br"}, {"chamada": 5, "nome": "ARIANE DIAS SOARES", "ra": "115066892-1", "email": "00001150668921sp@al.educacao.sp.gov.br"}, {"chamada": 6, "nome": "BRYAN OLLIVER TEIXEIRA RODRIGUES DE SALLES", "ra": "116500942-0", "email": "00001165009420sp@al.educacao.sp.gov.br"}, {"chamada": 7, "nome": "CRYSTHOPHER PIERRE CAVALCANTE RUBIRA", "ra": "121631871-2", "email": "00001216318712sp@al.educacao.sp.gov.br"}, {"chamada": 8, "nome": "EMANUELLA RIBEIRO MAFRA", "ra": "115069279-0", "email": "00001150692790SP@al.educacao.sp.gov.br"}, {"chamada": 9, "nome": "FHELIPE OLIVEIRA CAETANO PEREIRA", "ra": "121486283-4", "email": "00001214862834sp@al.educacao.sp.gov.br"}, {"chamada": 10, "nome": "GABRIEL CHAVES RAMOS", "ra": "112603375-3", "email": "00001126033753SP@al.educacao.sp.gov.br"}, {"chamada": 12, "nome": "HENRIQUE VIANA LEITE", "ra": "116437860-0", "email": "00001164378600sp@al.educacao.sp.gov.br"}, {"chamada": 13, "nome": "ISABELLA DE SOUZA SILVA", "ra": "114595973-8", "email": "00001145959738SP@al.educacao.sp.gov.br"}, {"chamada": 14, "nome": "ISABELLY SOPHIA VIEIRA LIMA", "ra": "121695507-4", "email": "00001216955074SP@al.educacao.sp.gov.br"}, {"chamada": 15, "nome": "ISABELLY VITORIA DA SILVA MOREIRA", "ra": "114612929-4", "email": "00001146129294SP@al.educacao.sp.gov.br"}, {"chamada": 16, "nome": "JÁDINA COELHO ABADE", "ra": "115882329-0", "email": "00001158823290SP@al.educacao.sp.gov.br"}, {"chamada": 17, "nome": "JEAN PAULO MARTINS DA SILVA", "ra": "115882392-7", "email": "00001158823927sp@al.educacao.sp.gov.br"}, {"chamada": 19, "nome": "KETTELLEN VITORIA DA SILVA CARDOSO", "ra": "115883763-X", "email": "0000115883763XSP@al.educacao.sp.gov.br"}, {"chamada": 21, "nome": "LUAN CAIO LOPES DE LIMA", "ra": "116528464-9", "email": "00001165284649sp@al.educacao.sp.gov.br"}, {"chamada": 24, "nome": "MAYSA CORREIA DE OLIVEIRA", "ra": "121491458-5", "email": "00001214914585SP@al.educacao.sp.gov.br"}, {"chamada": 25, "nome": "MAYSA FERNANDA DE OLIVEIRA CARVALHO", "ra": "116517507-1", "email": "00001165175071sp@al.educacao.sp.gov.br"}, {"chamada": 27, "nome": "OTAVIO DO NASCIMENTO CONCEIÇÃO", "ra": "122012071-6", "email": "00001220120716SP@al.educacao.sp.gov.br"}, {"chamada": 28, "nome": "PEDRO BRANDÃO SANTOS", "ra": "123923601-3", "email": "00001239236013SP@al.educacao.sp.gov.br"}, {"chamada": 30, "nome": "RAFAELLA VICTORIA ABREU DOS ANJOS", "ra": "121483537-5", "email": "00001214835375sp@al.educacao.sp.gov.br"}, {"chamada": 31, "nome": "RAPHAEL CORRÊA AZEVEDO", "ra": "115889689-X", "email": "0000115889689XSP@al.educacao.sp.gov.br"}, {"chamada": 32, "nome": "RYAN FREITAS FERREIRA", "ra": "116520668-7", "email": "00001165206687sp@al.educacao.sp.gov.br"}, {"chamada": 33, "nome": "SAYMON GABRIEL DE JESUS BARBOSA", "ra": "121976177-1", "email": "00001219761771SP@al.educacao.sp.gov.br"}, {"chamada": 34, "nome": "YASMIM MANGILI SILVA", "ra": "114163728-5", "email": "00001141637285sp@al.educacao.sp.gov.br"}, {"chamada": 35, "nome": "YASMIM NOVAES SOARES", "ra": "116522578-5", "email": "00001165225785SP@al.educacao.sp.gov.br"}, {"chamada": 36, "nome": "YASMIN CRISTINA PEREIRA CORREIA", "ra": "116522822-1", "email": "00001165228221SP@al.educacao.sp.gov.br"}, {"chamada": 38, "nome": "ANA LUIZA DA SILVA OLIVEIRA", "ra": "121028045-0", "email": "00001210280450SP@al.educacao.sp.gov.br"}, {"chamada": 39, "nome": "AGATHA DE CAMARGO", "ra": "115622979-0", "email": "00001156229790sp@al.educacao.sp.gov.br"}], "7°Ano B": [{"chamada": 1, "nome": "ABRAÃO JUNIOR SOUSA BATISTA", "ra": "116498223-0", "email": "00001164982230sp@al.educacao.sp.gov.br"}, {"chamada": 2, "nome": "ALEX ROBERTO BARBOZA DE CARVALHO", "ra": "116498448-2", "email": "00001164984482SP@al.educacao.sp.gov.br"}, {"chamada": 3, "nome": "AMANDA MARTINS SANTOS DA SILVA", "ra": "116498886-4", "email": "00001164988864SP@al.educacao.sp.gov.br"}, {"chamada": 4, "nome": "ANA CECILIA LEÃO DE ALMEIDA", "ra": "115865028-0", "email": "00001158650280sp@al.educacao.sp.gov.br"}, {"chamada": 7, "nome": "BEATRIZ NASCIMENTO ALVES", "ra": "116500353-3", "email": "00001165003533SP@al.educacao.sp.gov.br"}, {"chamada": 10, "nome": "BRUNO HENRIQUE SERAFIM", "ra": "115069759-3", "email": "00001150697593SP@al.educacao.sp.gov.br"}, {"chamada": 11, "nome": "DANIEL ROCHA COSTA", "ra": "116501654-0", "email": "00001165016540sp@al.educacao.sp.gov.br"}, {"chamada": 13, "nome": "ERICK ROBERTO ESTEVAM OLIVEIRA", "ra": "116503338-0", "email": "00001165033380sp@al.educacao.sp.gov.br"}, {"chamada": 14, "nome": "FELIPE WENDEL GONÇALVES DOS SANTOS", "ra": "115069286-8", "email": "00001150692868sp@al.educacao.sp.gov.br"}, {"chamada": 15, "nome": "FERNANDA MARCOS SOARES", "ra": "115070045-2", "email": "00001150700452SP@al.educacao.sp.gov.br"}, {"chamada": 16, "nome": "GUILHERME CAMARGO MOTA", "ra": "116504776-7", "email": "00001165047767SP@al.educacao.sp.gov.br"}, {"chamada": 17, "nome": "GUILHERME DE BRITO ROCHA", "ra": "116504787-1", "email": "00001165047871SP@al.educacao.sp.gov.br"}, {"chamada": 18, "nome": "HEDERSON FERNANDO FELIX DE SOUZA", "ra": "114155344-2", "email": "00001141553442SP@al.educacao.sp.gov.br"}, {"chamada": 19, "nome": "JENIFER MEDEIROS ALVES", "ra": "121487942-1", "email": "00001214879421sp@al.educacao.sp.gov.br"}, {"chamada": 20, "nome": "JHULIA FERNANDA MENDES", "ra": "115882488-9", "email": "00001158824889sp@al.educacao.sp.gov.br"}, {"chamada": 22, "nome": "KENNETH BARTHOLOMEW KOSH IV", "ra": "121490017-3", "email": "00001214900173sp@al.educacao.sp.gov.br"}, {"chamada": 23, "nome": "LARYSSA XAVIER DE SOUZA", "ra": "116527633-1", "email": "00001165276331sp@al.educacao.sp.gov.br"}, {"chamada": 26, "nome": "LOHANA GABRIELY GONÇALVES DA SILVA", "ra": "121489264-4", "email": "00001214892644sp@al.educacao.sp.gov.br"}, {"chamada": 28, "nome": "MATHEUS LOPES FERREIRA", "ra": "121510406-6", "email": "00001215104066sp@al.educacao.sp.gov.br"}, {"chamada": 29, "nome": "MAYRA CORREIA DE OLIVEIRA", "ra": "121489178-0", "email": "00001214891780SP@al.educacao.sp.gov.br"}, {"chamada": 30, "nome": "MILENA KAROLINE ALVES COSTA", "ra": "122967935-2", "email": "00001229679352SP@al.educacao.sp.gov.br"}, {"chamada": 32, "nome": "SOPHIA EVANGELISTA COBRA DE CARVALHO", "ra": "116536550-9", "email": "00001165365509SP@al.educacao.sp.gov.br"}, {"chamada": 33, "nome": "VITOR HUGO GUERREIRO RODRIGUES", "ra": "115891495-7", "email": "00001158914957sp@al.educacao.sp.gov.br"}, {"chamada": 35, "nome": "MIGUEL DOMINGOS CALIXTO", "ra": "120583574-X", "email": "0000120583574XSP@al.educacao.sp.gov.br"}]};
 
 /* ============================================================
    3) Estado das respostas
@@ -824,12 +831,22 @@ const selTurma = document.getElementById('selTurma');
 const selNome  = document.getElementById('selNome');
 const raAluno  = document.getElementById('raAluno');
 const alunoResumo = document.getElementById('alunoResumo');
+const numChamadaInput = document.getElementById('numChamada');
+const raAlunoInput = document.getElementById('raAlunoInput');
+const emailAlunoInput = document.getElementById('emailAluno');
+
+function limparCamposAluno(){
+  raAluno.textContent = '—';
+  alunoResumo.textContent = '';
+  numChamadaInput.value = '—';
+  raAlunoInput.value = '—';
+  emailAlunoInput.value = '—';
+}
 
 selTurma.addEventListener('change', () => {
   const turma = selTurma.value;
   selNome.innerHTML = '';
-  raAluno.textContent = '—';
-  alunoResumo.textContent = '';
+  limparCamposAluno();
 
   if (!turma) {
     selNome.disabled = true;
@@ -839,14 +856,29 @@ selTurma.addEventListener('change', () => {
   selNome.disabled = false;
   const alunos = [...TURMAS[turma]].sort((a,b) => a.nome.localeCompare(b.nome, 'pt-BR'));
   selNome.innerHTML = '<option value="">Selecione o(a) aluno(a)</option>' +
-    alunos.map(a => `<option value="${a.nome}" data-ra="${a.ra}">${a.nome}</option>`).join('');
+    alunos.map(a => `<option value="${a.nome}" data-ra="${a.ra}" data-chamada="${a.chamada}" data-email="${a.email}">${a.nome}</option>`).join('');
 });
 
 selNome.addEventListener('change', () => {
   const opt = selNome.options[selNome.selectedIndex];
-  const ra = opt && opt.dataset ? opt.dataset.ra : null;
-  raAluno.textContent = ra || '—';
-  alunoResumo.textContent = opt && opt.value ? `Turma: ${selTurma.value}` : '';
+  const temAluno = opt && opt.value;
+
+  if (!temAluno) {
+    limparCamposAluno();
+    return;
+  }
+
+  const ra = opt.dataset.ra || '—';
+  const chamada = opt.dataset.chamada || '—';
+  const email = opt.dataset.email || '—';
+
+  // Carrega, em campos diferentes, os dados adicionais do aluno selecionado
+  numChamadaInput.value = chamada;
+  raAlunoInput.value = ra;
+  emailAlunoInput.value = email;
+
+  raAluno.textContent = opt.value;
+  alunoResumo.textContent = `Turma: ${selTurma.value} · Nº ${chamada}`;
 });
 
 /* ============================================================
@@ -904,6 +936,43 @@ document.querySelectorAll('.bio-img').forEach(img => {
 });
 
 /* ============================================================
+   7b) Lightbox — expandir imagem ao clicar
+   ============================================================ */
+const lightboxOverlay  = document.getElementById('lightboxOverlay');
+const lightboxImg      = document.getElementById('lightboxImg');
+const lightboxLegenda  = document.getElementById('lightboxLegenda');
+const lightboxFechar   = document.getElementById('lightboxFechar');
+
+function abrirLightbox(src, legenda){
+  lightboxImg.src = src;
+  lightboxImg.alt = legenda || '';
+  lightboxLegenda.textContent = legenda || '';
+  lightboxOverlay.classList.add('aberto');
+  document.body.style.overflow = 'hidden';
+}
+function fecharLightbox(){
+  lightboxOverlay.classList.remove('aberto');
+  document.body.style.overflow = '';
+  lightboxImg.src = '';
+}
+
+document.querySelectorAll('.bio-img').forEach(img => {
+  img.addEventListener('click', () => {
+    const legendaEl = img.closest('figure') ? img.closest('figure').querySelector('.legenda') : null;
+    const legenda = legendaEl ? legendaEl.textContent : (img.alt || '');
+    abrirLightbox(img.src, legenda);
+  });
+});
+
+lightboxFechar.addEventListener('click', fecharLightbox);
+lightboxOverlay.addEventListener('click', (e) => {
+  if (e.target === lightboxOverlay) fecharLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightboxOverlay.classList.contains('aberto')) fecharLightbox();
+});
+
+/* ============================================================
    8) Envio para o Google Apps Script
    ============================================================ */
 document.getElementById('btnEnviar').addEventListener('click', async () => {
@@ -914,7 +983,9 @@ document.getElementById('btnEnviar').addEventListener('click', async () => {
 
   const turma = selTurma.value;
   const nome  = selNome.value;
-  const ra    = raAluno.textContent;
+  const ra    = raAlunoInput.value;
+  const chamada = numChamadaInput.value;
+  const email = emailAlunoInput.value;
 
   if (!turma || !nome) {
     statusMsg.classList.add('erro');
@@ -937,6 +1008,8 @@ document.getElementById('btnEnviar').addEventListener('click', async () => {
     turma: turma,
     nome: nome,
     ra: ra,
+    numChamada: chamada,
+    emailInstitucional: email,
     q1: respostas[1], q2: respostas[2], q3: respostas[3], q4: respostas[4], q5: respostas[5],
     q6: respostas[6], q7: respostas[7], q8: respostas[8], q9: respostas[9], q10: respostas[10]
   };
